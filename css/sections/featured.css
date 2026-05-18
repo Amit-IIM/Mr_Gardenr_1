@@ -1,0 +1,23 @@
+/* FEATURED */
+.featured {
+  padding: 60px 0;
+  background: var(--white);
+  border-top: 1px solid var(--gray-light);
+}
+
+.featured-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  opacity: 0.5;
+}
+
+.featured-logos span {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gray);
+  letter-spacing: 1px;
+}

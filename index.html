@@ -1,534 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MrGardenr.in | Premium Landscaping Services in India</title>
-  <meta name="description" content="MrGardenr.in creates stunning landscaping designs, transforming your terrace or frontyard into beautiful outdoor spaces. Pergola, grass, vertical garden, roofing, decorative pots, plants & more.">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description"
+    content="MrGardenr.in creates stunning landscaping designs, transforming your terrace or frontyard into beautiful outdoor spaces. Pergola, grass, vertical garden, roofing, decorative pots, plants & more.">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Base -->
+  <link rel="stylesheet" href="css/base.css">
+
+  <!-- Components -->
+  <link rel="stylesheet" href="css/components/buttons.css">
+  <link rel="stylesheet" href="css/components/section-header.css">
+
+  <!-- Layout -->
+  <link rel="stylesheet" href="css/layout/navbar.css">
+  <link rel="stylesheet" href="css/layout/mobile-nav.css">
+  <link rel="stylesheet" href="css/layout/footer.css">
+
+  <!-- Sections -->
+  <link rel="stylesheet" href="css/sections/hero.css">
+  <link rel="stylesheet" href="css/sections/stats.css">
+  <link rel="stylesheet" href="css/sections/services.css">
+  <link rel="stylesheet" href="css/sections/testimonials.css">
+  <link rel="stylesheet" href="css/sections/gallery.css">
+  <link rel="stylesheet" href="css/sections/featured.css">
+  <link rel="stylesheet" href="css/sections/store-locator.css">
+  <link rel="stylesheet" href="css/sections/contact.css">
+  <link rel="stylesheet" href="css/sections/responsive.css">
 </head>
+
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <a href="tel:+919761655546"><i class="fas fa-phone"></i> +91-9761655546</a>
-    </div>
-    <div class="topbar-right">
-      <a href="mailto:hello@mrgardenr.in"><i class="fas fa-envelope"></i> hello@mrgardenr.in</a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-    </div>
-  </div>
-</div>
+<!-- Section placeholders — loaded via JS fetch() -->
+<div data-include="sections/topbar.html"></div>
+<div data-include="sections/navbar.html"></div>
+<div data-include="sections/mobile-nav.html"></div>
+<div data-include="sections/hero.html"></div>
+<div data-include="sections/about.html"></div>
+<div data-include="sections/stats.html"></div>
+<div data-include="sections/services.html"></div>
+<div data-include="sections/testimonials.html"></div>
+<div data-include="sections/gallery.html"></div>
+<div data-include="sections/process.html"></div>
+<div data-include="sections/featured.html"></div>
+<div data-include="sections/store-locator.html"></div>
+<div data-include="sections/showcase.html"></div>
+<div data-include="sections/contact.html"></div>
+<div data-include="sections/footer.html"></div>
 
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar">
-  <div class="container">
-    <a href="#" class="logo">
-      <img src="images/logo.png" alt="MrGardenr Logo" onerror="this.style.display='none'">
-      <div class="logo-text">Mr<span>Gardenr</span></div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li>
-        <a href="#services">Services <i class="fas fa-chevron-down" style="font-size:10px"></i></a>
-        <div class="dropdown-menu">
-          <a href="#services">Home Landscaping</a>
-          <a href="#services">Office Plantation</a>
-          <a href="#services">Pergola / Gazebo</a>
-          <a href="#services">Commercial Landscaping</a>
-          <a href="#services">Maintenance Service</a>
-        </div>
-      </li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#work">Showcase</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
+<!-- Main Script (Module) -->
+<script type="module" src="js/main.js"></script>
 
-<!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobileNav">
-  <button class="mobile-close" onclick="toggleMobileNav()">&times;</button>
-  <a href="#" onclick="toggleMobileNav()">Home</a>
-  <a href="#about" onclick="toggleMobileNav()">About</a>
-  <a href="#services" onclick="toggleMobileNav()">Services</a>
-  <a href="#gallery" onclick="toggleMobileNav()">Gallery</a>
-  <a href="#work" onclick="toggleMobileNav()">Showcase</a>
-  <a href="#process" onclick="toggleMobileNav()">Process</a>
-  <a href="#contact" onclick="toggleMobileNav()">Contact Us</a>
-</div>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg">
-    <img src="images/hero.png" alt="Beautiful Garden Landscape">
-  </div>
-  <div class="hero-overlay"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <i class="fas fa-leaf"></i> Premium Landscaping Services
-      </div>
-      <h1>Transform Your Space Into a <span>Green Paradise</span></h1>
-      <p>We design and build stunning landscapes for homes, offices, and commercial spaces. From terrace gardens to pergolas, we bring nature closer to you.</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book A Visit</a>
-        <a href="#services" class="btn btn-outline"><i class="fas fa-play-circle"></i> Our Services</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT US -->
-<section class="about" id="about" style="padding: 100px 0; background: var(--white);">
-  <div class="container">
-    <div class="locator-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-      <div class="about-image reveal">
-        <img src="images/hero.png" alt="About Mr Gardenr" style="width: 100%; border-radius: 24px; box-shadow: var(--shadow-lg);">
-      </div>
-      <div class="about-content reveal">
-        <div class="section-tag">About Us</div>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 20px;">Welcome to Mr Gardenr</h2>
-        <p style="font-size: 17px; color: var(--gray); margin-bottom: 24px; line-height: 1.8;">Your ultimate destination for home and garden decor, where our passion is centered around houseplants. Our extensive range includes houseplants, home & garden decor, living, and gifting items, offering a diverse inventory comprising plants, planters, plant food, crockery, pottery, furnishings, art and craft, furniture etc.</p>
-        <div class="locator-detail" style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> <span>700+ Home & Offices Transformed</span></div>
-        <div class="locator-detail" style="margin-bottom: 24px;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> <span>Premium Quality Crafted from top materials</span></div>
-        <a href="#contact" class="btn btn-primary">Book A Free Consultation</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats reveal">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <h3 id="stat1">700+</h3>
-        <p>Spaces Transformed</p>
-      </div>
-      <div class="stat-item">
-        <h3 id="stat2">500+</h3>
-        <p>Happy Clients</p>
-      </div>
-      <div class="stat-item">
-        <h3 id="stat3">4</h3>
-        <p>Flagship Stores</p>
-      </div>
-      <div class="stat-item">
-        <h3 id="stat4">100+</h3>
-        <p>Plant Varieties</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-tag">What We Do</div>
-      <h2>Our Premium Services</h2>
-      <p>From concept to completion, we offer end-to-end landscaping solutions tailored to your space and lifestyle.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <img src="images/home-landscaping.png" alt="Home Landscaping">
-        <div class="service-card-overlay">
-          <h3>Home Landscaping</h3>
-          <p>Transform your terrace, balcony or backyard into a lush green retreat with custom garden designs.</p>
-        </div>
-        <div class="service-card-arrow"><i class="fas fa-arrow-right"></i></div>
-      </div>
-      <div class="service-card reveal">
-        <img src="images/pergola.png" alt="Pergola & Gazebo">
-        <div class="service-card-overlay">
-          <h3>Pergola / Gazebo</h3>
-          <p>Elegant outdoor structures that blend beauty with functionality for your perfect garden space.</p>
-        </div>
-        <div class="service-card-arrow"><i class="fas fa-arrow-right"></i></div>
-      </div>
-      <div class="service-card reveal">
-        <img src="images/park.png" alt="Park Development">
-        <div class="service-card-overlay">
-          <h3>Park Development</h3>
-          <p>Complete park and commercial landscape solutions with sustainable design and expert execution.</p>
-        </div>
-        <div class="service-card-arrow"><i class="fas fa-arrow-right"></i></div>
-      </div>
-      <div class="service-card reveal">
-        <img src="images/office.png" alt="Office Landscaping">
-        <div class="service-card-overlay">
-          <h3>Office Landscaping</h3>
-          <p>Bring biophilic design to your workplace with indoor plants, green walls, and modern office gardens.</p>
-        </div>
-        <div class="service-card-arrow"><i class="fas fa-arrow-right"></i></div>
-      </div>
-      <div class="service-card reveal">
-        <img src="images/maintenance.png" alt="Maintenance Service">
-        <div class="service-card-overlay">
-          <h3>Maintenance Service</h3>
-          <p>Regular garden care and upkeep to ensure your green spaces stay vibrant and healthy year-round.</p>
-        </div>
-        <div class="service-card-arrow"><i class="fas fa-arrow-right"></i></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials" id="testimonials">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-tag">Testimonials</div>
-      <h2>What Our Clients Say</h2>
-      <p>Hear from homeowners and businesses who trusted us with their dream gardens.</p>
-    </div>
-    <div class="testimonial-slider reveal">
-      <div class="testimonial-track" id="testimonialTrack">
-        <div class="testimonial-card">
-          <div class="testimonial-inner">
-            <div class="testimonial-quote">&ldquo;</div>
-            <blockquote>MrGardenr completely turned my imagination into reality. From the moment I reached out to them, their team was attentive and professional, helping me select the perfect plants and planters to transform my Penthouse into a beautiful, Green oasis.</blockquote>
-            <div class="testimonial-author">
-              <strong>Mr lucky valecha</strong>
-              <span>Founder of Proteinverse</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-inner">
-            <div class="testimonial-quote">&ldquo;</div>
-            <blockquote>I am absolutely thrilled with my purchases from Mr Gardenr! The elegant pots and planters have transformed my home, and their exotic plants are stunning. The quality and variety are unmatched. Highly recommended!</blockquote>
-            <div class="testimonial-author">
-              <strong>Kavita Shah</strong>
-              <span>Architect</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-inner">
-            <div class="testimonial-quote">&ldquo;</div>
-            <blockquote>I’ve been a gardening enthusiast for years, and Mr Gardenr has become my go-to place for elegant pots and rare plants. The quality and craftsmanship are exceptional. Mr Gardenr Just transformed My office, Now its more positive and Live.</blockquote>
-            <div class="testimonial-author">
-              <strong>Ms Hetal Shah</strong>
-              <span>Landscape Architect</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-inner">
-            <div class="testimonial-quote">&ldquo;</div>
-            <blockquote>The exotic plants from Mr Gardenr have added a unique touch to my clients Home & garden. The pots and planters are not only elegant but also durable. I’m impressed with the variety and the helpful staff.</blockquote>
-            <div class="testimonial-author">
-              <strong>Mr Tirth</strong>
-              <span>Business Owner</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-nav" id="testimonialNav"></div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section class="gallery" id="gallery">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-tag">Our Work</div>
-      <h2>Featured Projects</h2>
-      <p>Browse through some of our finest landscaping transformations across India.</p>
-    </div>
-    <div class="gallery-grid reveal">
-      <div class="gallery-item">
-        <img src="images/home-landscaping.png" alt="Balcony Garden">
-        <div class="gallery-item-overlay">
-          <h4>Balcony Garden</h4>
-          <p>DLF Camellias, Gurgaon</p>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/pergola.png" alt="Gazebo Project">
-        <div class="gallery-item-overlay">
-          <h4>Gazebo Installation</h4>
-          <p>Prestige Golfshire, Bangalore</p>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/park.png" alt="Backyard Garden">
-        <div class="gallery-item-overlay">
-          <h4>Backyard Development</h4>
-          <p>Embassy Grove, Bangalore</p>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/office.png" alt="Park Development">
-        <div class="gallery-item-overlay">
-          <h4>Park Development</h4>
-          <p>Toyota Industries, Bangalore</p>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/maintenance.png" alt="Terrace Garden">
-        <div class="gallery-item-overlay">
-          <h4>Terrace Garden</h4>
-          <p>Indira Nagar, Bangalore</p>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="images/hero.png" alt="Complete Landscape">
-        <div class="gallery-item-overlay">
-          <h4>Complete Landscape</h4>
-          <p>Whitefield, Bangalore</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="stats" id="process" style="background:var(--light);">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-tag">How It Works</div>
-      <h2>Our Process</h2>
-      <p>A seamless journey from your vision to a green reality.</p>
-    </div>
-    <div class="stats-grid reveal">
-      <div class="stat-item">
-        <h3 style="font-size:36px;">01</h3>
-        <p style="text-transform:none;letter-spacing:0;font-size:15px;font-weight:600;color:var(--dark);">Book Appointment</p>
-        <p style="text-transform:none;letter-spacing:0;margin-top:8px;">Schedule a visit with our exterior designers and plant experts.</p>
-      </div>
-      <div class="stat-item">
-        <h3 style="font-size:36px;">02</h3>
-        <p style="text-transform:none;letter-spacing:0;font-size:15px;font-weight:600;color:var(--dark);">Expert Meeting</p>
-        <p style="text-transform:none;letter-spacing:0;margin-top:8px;">Meet with our team to discuss your vision and space potential.</p>
-      </div>
-      <div class="stat-item">
-        <h3 style="font-size:36px;">03</h3>
-        <p style="text-transform:none;letter-spacing:0;font-size:15px;font-weight:600;color:var(--dark);">Selection</p>
-        <p style="text-transform:none;letter-spacing:0;margin-top:8px;">Complete the selection from a wide range of gardening products.</p>
-      </div>
-      <div class="stat-item">
-        <h3 style="font-size:36px;">04</h3>
-        <p style="text-transform:none;letter-spacing:0;font-size:15px;font-weight:600;color:var(--dark);">Paradise</p>
-        <p style="text-transform:none;letter-spacing:0;margin-top:8px;">Shake hands and enjoy your new lush green paradise.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED IN -->
-<section class="featured reveal">
-  <div class="container">
-    <div class="section-header" style="margin-bottom:32px;">
-      <h2 style="font-size:24px;">Featured In</h2>
-    </div>
-    <div class="featured-logos">
-      <span>Times of India</span>
-      <span>Hindustan Times</span>
-      <span>The Hindu</span>
-      <span>Deccan Herald</span>
-      <span>India Today</span>
-    </div>
-  </div>
-</section>
-
-<!-- STORE LOCATOR -->
-<section class="store-locator" id="locations">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-tag">Find Us</div>
-      <h2>Our Store Locations</h2>
-      <p>Visit us at any of our offices across India for a personalized consultation.</p>
-    </div>
-    <div class="locator-tabs reveal">
-      <button class="locator-tab active" data-city="ahmedabad"><i class="fas fa-map-marker-alt"></i> Ahmedabad</button>
-      <button class="locator-tab" data-city="surat"><i class="fas fa-map-marker-alt"></i> Surat</button>
-      <button class="locator-tab" data-city="vadodara"><i class="fas fa-map-marker-alt"></i> Vadodara</button>
-      <button class="locator-tab" data-city="bangalore"><i class="fas fa-map-marker-alt"></i> Bangalore</button>
-    </div>
-    <div class="locator-grid reveal">
-      <div class="locator-card active" id="loc-ahmedabad">
-        <div class="locator-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235013.74862600498!2d72.43965!3d23.0225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="locator-info">
-          <div class="locator-city-badge"><i class="fas fa-building"></i> Ahmedabad Office</div>
-          <h3>Ahmedabad</h3>
-          <div class="locator-detail"><i class="fas fa-map-marker-alt"></i><span>MrGardenr, SG Highway, Ahmedabad, Gujarat 380015</span></div>
-          <div class="locator-detail"><i class="fas fa-phone"></i><span><a href="tel:+919761655546">+91-9761655546</a></span></div>
-          <div class="locator-detail"><i class="fas fa-envelope"></i><span>hello@mrgardenr.in</span></div>
-          <div class="locator-detail"><i class="fas fa-clock"></i><span>Mon - Sat: 10:00 AM - 7:00 PM</span></div>
-          <a href="https://maps.google.com/?q=Ahmedabad+Gujarat" target="_blank" class="btn btn-primary" style="margin-top:16px;"><i class="fas fa-directions"></i> Get Directions</a>
-        </div>
-      </div>
-      <div class="locator-card" id="loc-surat">
-        <div class="locator-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238570.26178714498!2d72.7519!3d21.1702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e59411d1563%3A0xfe4558290938b042!2sSurat%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000001" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="locator-info">
-          <div class="locator-city-badge"><i class="fas fa-building"></i> Surat Office</div>
-          <h3>Surat</h3>
-          <div class="locator-detail"><i class="fas fa-map-marker-alt"></i><span>MrGardenr, Vesu, Surat, Gujarat 395007</span></div>
-          <div class="locator-detail"><i class="fas fa-phone"></i><span><a href="tel:+919761655546">+91-9761655546</a></span></div>
-          <div class="locator-detail"><i class="fas fa-envelope"></i><span>hello@mrgardenr.in</span></div>
-          <div class="locator-detail"><i class="fas fa-clock"></i><span>Mon - Sat: 10:00 AM - 7:00 PM</span></div>
-          <a href="https://maps.google.com/?q=Surat+Gujarat" target="_blank" class="btn btn-primary" style="margin-top:16px;"><i class="fas fa-directions"></i> Get Directions</a>
-        </div>
-      </div>
-      <div class="locator-card" id="loc-vadodara">
-        <div class="locator-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235014.29918117!2d73.1812!3d22.3072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8ab91a3ddab%3A0x1f9e4f1b7c9c26d1!2sVadodara%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000002" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="locator-info">
-          <div class="locator-city-badge"><i class="fas fa-building"></i> Vadodara Office</div>
-          <h3>Vadodara</h3>
-          <div class="locator-detail"><i class="fas fa-map-marker-alt"></i><span>Mr Gardenr, Vishwas Colony, Jetalpur Road, Vadodara, Gujarat 390007</span></div>
-          <div class="locator-detail"><i class="fas fa-phone"></i><span><a href="tel:+919761655546">+91-9761655546</a></span></div>
-          <div class="locator-detail"><i class="fas fa-envelope"></i><span>hello@mrgardenr.in</span></div>
-          <div class="locator-detail"><i class="fas fa-clock"></i><span>Mon - Sat: 10:00 AM - 7:00 PM</span></div>
-          <a href="https://www.google.com/maps/search/Mr+Gardenr+Vadodara" target="_blank" class="btn btn-primary" style="margin-top:16px;"><i class="fas fa-directions"></i> Get Directions</a>
-        </div>
-      </div>
-      <div class="locator-card" id="loc-bangalore">
-        <div class="locator-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d497511.23476138!2d77.3500!3d12.9538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1700000000003" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="locator-info">
-          <div class="locator-city-badge"><i class="fas fa-building"></i> Bangalore Office</div>
-          <h3>Bangalore</h3>
-          <div class="locator-detail"><i class="fas fa-map-marker-alt"></i><span>MrGardenr, HSR Layout, Bangalore, Karnataka 560102</span></div>
-          <div class="locator-detail"><i class="fas fa-phone"></i><span><a href="tel:+919761655546">+91-9761655546</a></span></div>
-          <div class="locator-detail"><i class="fas fa-envelope"></i><span>hello@mrgardenr.in</span></div>
-          <div class="locator-detail"><i class="fas fa-clock"></i><span>Mon - Sat: 10:00 AM - 7:00 PM</span></div>
-          <a href="https://www.google.com/maps/search/Mr+Gardenr+HSR+Layout+Bangalore" target="_blank" class="btn btn-primary" style="margin-top:16px;"><i class="fas fa-directions"></i> Get Directions</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK VIDEOS / SHOWCASE -->
-<section class="work-showcase" id="work" style="padding: 100px 0; background: var(--light);">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-tag">Showcase</div>
-      <h2>Watch Our Transformations</h2>
-      <p>See how we bring dead spaces to life with our exotic plants and elegant designs.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal" style="height: 450px;">
-        <div style="width: 100%; height: 100%; background: #000; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-          <img src="images/hero.png" alt="Video Placeholder" style="opacity: 0.5; width: 100%; height: 100%; object-fit: cover;">
-          <div style="position: absolute; width: 80px; height: 80px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; cursor: pointer; box-shadow: 0 0 30px rgba(91,165,133,0.5); z-index: 5;">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="service-card-overlay">
-          <h3>Penthouse Transformation</h3>
-          <p>Complete green paradise setup for a luxury penthouse in Ahmedabad.</p>
-        </div>
-      </div>
-      <div class="service-card reveal" style="height: 450px;">
-        <div style="width: 100%; height: 100%; background: #000; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-          <img src="images/office.png" alt="Video Placeholder" style="opacity: 0.5; width: 100%; height: 100%; object-fit: cover;">
-          <div style="position: absolute; width: 80px; height: 80px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; cursor: pointer; box-shadow: 0 0 30px rgba(91,165,133,0.5); z-index: 5;">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="service-card-overlay">
-          <h3>Corporate Office Biophilic Design</h3>
-          <p>Live green walls and indoor plant installations for a tech hub in Bangalore.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA / CONTACT -->
-<section class="cta" id="contact">
-  <div class="container">
-    <div class="cta-content reveal">
-      <div class="section-tag" style="color:var(--primary-light);">Get Started</div>
-      <h2>Schedule a Site Visit</h2>
-      <p>Let our experts visit your space and provide a free consultation and estimate for your dream garden.</p>
-      <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <input type="text" placeholder="Your Name" required id="contact-name">
-          <input type="tel" placeholder="Phone Number" required id="contact-phone">
-        </div>
-        <input type="email" placeholder="Email Address" required id="contact-email">
-        <input type="text" placeholder="City / Location" id="contact-city">
-        <textarea placeholder="Tell us about your project..." rows="4" id="contact-message"></textarea>
-        <button type="submit" class="btn btn-primary" style="justify-content:center;width:100%;">
-          <i class="fas fa-paper-plane"></i> Submit Request
-        </button>
-      </form>
-      <p style="font-size:13px;margin-top:16px;opacity:0.6;">We will get in touch within 24 hours!</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo-text" style="color:white;font-size:26px;">Mr<span style="color:var(--primary-light)">Gardenr</span></div>
-        <p>Premium landscaping services transforming spaces across India. We bring your garden dreams to life with expert design and execution.</p>
-        <div class="social-links">
-          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Services</h4>
-        <ul class="footer-links">
-          <li><a href="#">Home Landscaping</a></li>
-          <li><a href="#">Office Plantation</a></li>
-          <li><a href="#">Pergola / Gazebo</a></li>
-          <li><a href="#">Commercial Landscaping</a></li>
-          <li><a href="#">Maintenance</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>Contact</h4>
-        <p><i class="fas fa-map-marker-alt" style="color:var(--primary-light)"></i> Ahmedabad | Surat | Vadodara | Bangalore</p>
-        <p><i class="fas fa-phone" style="color:var(--primary-light)"></i> <a href="tel:+919761655546">9761655546</a></p>
-        <p><i class="fas fa-envelope" style="color:var(--primary-light)"></i> hello@mrgardenr.in</p>
-        <p><i class="fas fa-clock" style="color:var(--primary-light)"></i> Mon-Sat: 10AM-7PM</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 MrGardenr.in — A Brand of Ecovibes Green India Pvt. Ltd. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
-<script src="script.js"></script>
 </body>
 </html>

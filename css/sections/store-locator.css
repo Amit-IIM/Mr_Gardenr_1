@@ -1,0 +1,141 @@
+/* STORE LOCATOR */
+.store-locator {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.locator-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.locator-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: 2px solid var(--gray-light);
+  background: var(--white);
+  color: var(--dark);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.locator-tab:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(91, 165, 133, 0.06);
+}
+
+.locator-tab.active {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 4px 20px rgba(91, 165, 133, 0.35);
+}
+
+.locator-tab.active i {
+  color: var(--white);
+}
+
+.locator-tab i {
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+.locator-grid {
+  position: relative;
+}
+
+.locator-card {
+  display: none;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 0;
+  background: var(--white);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-light);
+  animation: fadeInUp 0.5s ease;
+}
+
+.locator-card.active {
+  display: grid;
+}
+
+.locator-map {
+  position: relative;
+  min-height: 380px;
+  background: var(--light);
+}
+
+.locator-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: absolute;
+  inset: 0;
+}
+
+.locator-info {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.locator-city-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(91, 165, 133, 0.1);
+  color: var(--primary);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+.locator-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+
+.locator-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  color: var(--gray);
+}
+
+.locator-detail i {
+  color: var(--primary);
+  margin-top: 4px;
+  font-size: 16px;
+  min-width: 18px;
+}
+
+.locator-detail a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.locator-detail a:hover {
+  color: var(--primary-dark);
+}
