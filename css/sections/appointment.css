@@ -1,0 +1,541 @@
+/* ==========================================================================
+   APPOINTMENT SYSTEM STYLINGS (INLINE & POP-UP MODAL CONCURRENTLY)
+   ========================================================================== */
+
+/* 1. SHARED DESIGN SYSTEM & VARIABLES */
+.appointment-wrapper {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left Column - Info & Trust elements */
+.appointment-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.appointment-info .section-tag {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.appointment-info h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 18px;
+}
+
+.appointment-info .section-subtitle {
+  font-size: 16px;
+  color: var(--gray);
+  margin-bottom: 35px;
+  line-height: 1.55;
+}
+
+.trust-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.trust-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.trust-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 11px;
+  background: rgba(91, 165, 133, 0.1);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.trust-item:hover .trust-icon {
+  background: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.trust-text h4 {
+  font-size: 17px;
+  color: var(--dark);
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.trust-text p {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Right Column - Booking Form Card Container */
+.appointment-form-container {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  border: 1px solid rgba(91, 165, 133, 0.05);
+}
+
+.appointment-form-container h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.appointment-form-container p {
+  font-size: 14px;
+  color: var(--gray);
+  margin-bottom: 26px;
+}
+
+/* Form Layout Elements */
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group label i {
+  color: var(--primary);
+}
+
+.appointment-form input[type="text"],
+.appointment-form input[type="tel"],
+.appointment-form input[type="email"],
+.appointment-form input[type="date"],
+.appointment-form select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 9px;
+  border: 1px solid var(--gray-light);
+  background: #fafcfa;
+  color: var(--dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: var(--transition);
+}
+
+.appointment-form input:focus,
+.appointment-form select:focus {
+  border-color: var(--primary);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(91, 165, 133, 0.1);
+}
+
+/* Custom Select Styling */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  padding-right: 40px;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray);
+  pointer-events: none;
+  font-size: 11px;
+  transition: var(--transition);
+}
+
+.custom-select-wrapper select:focus + .select-arrow {
+  color: var(--primary);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Form Grids */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* Custom Time Slot Badges */
+.time-slots-container {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.time-slot-option {
+  flex: 1;
+  cursor: pointer;
+}
+
+.time-slot-option input[type="radio"] {
+  display: none;
+}
+
+.slot-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 9px;
+  background: #fafcfa;
+  border: 1px solid var(--gray-light);
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.slot-badge i {
+  font-size: 13px;
+}
+
+/* Checked slot action */
+.time-slot-option input[type="radio"]:checked + .slot-badge {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--darker);
+  box-shadow: 0 3px 10px rgba(91, 165, 133, 0.15);
+}
+
+.time-slot-option:hover .slot-badge {
+  border-color: var(--primary);
+}
+
+/* CTA Submit Button */
+.btn-book {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.btn-book i {
+  font-size: 13px;
+  transition: transform 0.3s ease;
+}
+
+.btn-book:hover i {
+  transform: translateX(4px);
+}
+
+/* SUCCESS BOX STYLES */
+.booking-success-block {
+  text-align: center;
+  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.success-icon-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(91, 165, 133, 0.15);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 16px;
+  box-shadow: 0 4px 15px rgba(91, 165, 133, 0.2);
+}
+
+.booking-success-block h3 {
+  font-size: 22px;
+  font-family: 'Playfair Display', serif;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.booking-success-block p {
+  font-size: 13.5px;
+  color: var(--gray);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Elegant Success Receipt Ticket */
+.success-receipt {
+  background: var(--light);
+  border: 1px dashed var(--primary);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  text-align: left;
+  position: relative;
+}
+
+.success-receipt::before,
+.success-receipt::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--white);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.success-receipt::before {
+  left: -7px;
+}
+
+.success-receipt::after {
+  right: -7px;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+}
+
+.receipt-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.receipt-label {
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.receipt-value {
+  color: var(--dark);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ==========================================================================
+   2. SPECIFIC STYLES FOR THE INLINE PAGE SECTION
+   ========================================================================== */
+.appointment-section {
+  padding: 100px 0;
+  background: var(--light);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Diagonal Background Accent */
+.appointment-section::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(91, 165, 133, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   3. SPECIFIC STYLES FOR THE DYNAMIC POP-UP MODAL
+   ========================================================================== */
+.appointment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 15, 26, 0.75);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  padding: 20px;
+}
+
+/* Open State overlay */
+.appointment-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modal Content Card */
+.appointment-modal-container {
+  background: var(--white);
+  width: 100%;
+  max-width: 1050px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 28px;
+  padding: 45px;
+  position: relative;
+  box-shadow: var(--shadow-lg), 0 25px 60px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(91, 165, 133, 0.05);
+  transform: translateY(40px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+}
+
+.appointment-modal-overlay.active .appointment-modal-container {
+  transform: translateY(0);
+}
+
+/* Modal Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--light);
+  border: none;
+  color: var(--dark);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+  background: var(--primary);
+  color: var(--white);
+  transform: rotate(90deg) scale(1.05);
+}
+
+/* Ensure background of receipt matches modal white bg */
+.appointment-modal-overlay .success-receipt::before,
+.appointment-modal-overlay .success-receipt::after {
+  background: var(--white);
+}
+
+/* Ensure background of receipt matches inline section light bg */
+.appointment-section .success-receipt::before,
+.appointment-section .success-receipt::after {
+  background: var(--white);
+}
+
+/* ==========================================================================
+   4. RESPONSIVE BREAKPOINTS (APPLIED TO BOTH)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .appointment-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .appointment-info {
+    text-align: center;
+  }
+  
+  .appointment-info .section-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .trust-list {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  
+  /* Hide the trust list in the modal on tablets to keep popup highly compact and readable */
+  .appointment-modal-overlay .trust-list {
+    display: none;
+  }
+  
+  .appointment-modal-container {
+    padding: 35px 25px;
+    max-width: 550px;
+  }
+}
+
+@media (max-width: 576px) {
+  .appointment-form-container,
+  .appointment-modal-container {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+  
+  .modal-close-btn {
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .time-slots-container {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .slot-badge {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+}

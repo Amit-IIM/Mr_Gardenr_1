@@ -1,0 +1,135 @@
+<section class="appointment-section" id="booking">
+  <div class="container">
+    <div class="appointment-wrapper reveal">
+      
+      <!-- Left Column: Trust Info & What to Expect -->
+      <div class="appointment-info">
+        <div class="section-tag">Book Today</div>
+        <h2>Request a Premium Consultation</h2>
+        <p class="section-subtitle">Take the first step towards transforming your outdoor space into a luxury garden sanctuary.</p>
+        
+        <div class="trust-list">
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-calendar-check"></i></div>
+            <div class="trust-text">
+              <h4>Flexible Time Slots</h4>
+              <p>Choose a time that works best for your schedule. Our experts respect your time.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-drafting-compass"></i></div>
+            <div class="trust-text">
+              <h4>Expert Site Assessment</h4>
+              <p>A professional landscape designer will inspect your space, taking exact layout measurements.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-images"></i></div>
+            <div class="trust-text">
+              <h4>3D Visualization Preview</h4>
+              <p>Receive custom 3D walkthrough rendering previews of your future space before work begins.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+            <div class="trust-text">
+              <h4>Transparent Quotations</h4>
+              <p>Detailed breakdown of material specifications, plant types, and execution timelines.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column: Interactive Booking Form -->
+      <div class="appointment-form-container">
+        <h3>Schedule Site Visit</h3>
+        <p>Fill out the form below to lock in your preferred appointment slot.</p>
+        
+        <form class="appointment-form" id="appointmentForm">
+          
+          <!-- Personal Info -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="book-name"><i class="fas fa-user"></i> Full Name</label>
+              <input type="text" id="book-name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="book-phone"><i class="fas fa-phone"></i> Phone Number</label>
+              <input type="tel" id="book-phone" placeholder="Your Phone Number" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="book-email"><i class="fas fa-envelope"></i> Email Address</label>
+            <input type="email" id="book-email" placeholder="example@domain.com" required>
+          </div>
+          
+          <!-- Service Selection -->
+          <div class="form-group">
+            <label for="book-service"><i class="fas fa-spa"></i> Select Service Interest</label>
+            <div class="custom-select-wrapper">
+              <select id="book-service" required>
+                <option value="" disabled selected>Choose a premium service...</option>
+                <option value="Terrace Landscaping">Terrace Landscaping</option>
+                <option value="Balcony & Patio Makeover">Balcony & Patio Makeover</option>
+                <option value="Vertical Gardens">Vertical Gardens</option>
+                <option value="Custom Pergola & Roofing">Custom Pergola & Roofing</option>
+                <option value="General Consultation Visit">General Design Consultation Visit</option>
+              </select>
+              <i class="fas fa-chevron-down select-arrow"></i>
+            </div>
+          </div>
+          
+          <!-- Appointment Scheduling Details -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="book-date"><i class="fas fa-calendar-alt"></i> Preferred Date</label>
+              <input type="date" id="book-date" required>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-clock"></i> Preferred Time Slot</label>
+              <div class="time-slots-container">
+                <label class="time-slot-option">
+                  <input type="radio" name="book-time" value="Morning (10:00 AM - 1:00 PM)" required checked>
+                  <span class="slot-badge"><i class="fas fa-sun"></i> Morning</span>
+                </label>
+                <label class="time-slot-option">
+                  <input type="radio" name="book-time" value="Afternoon (1:00 PM - 4:00 PM)">
+                  <span class="slot-badge"><i class="fas fa-cloud-sun"></i> Afternoon</span>
+                </label>
+                <label class="time-slot-option">
+                  <input type="radio" name="book-time" value="Evening (4:00 PM - 7:00 PM)">
+                  <span class="slot-badge"><i class="fas fa-moon"></i> Evening</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Submit Action -->
+          <button type="submit" class="btn btn-primary btn-book" id="btnBookSubmit">
+            <span>Confirm Appointment Request</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+          
+        </form>
+        
+        <!-- Success State Block (Hidden initially, shown by JS) -->
+        <div class="booking-success-block" id="bookingSuccessBlock" style="display: none;">
+          <div class="success-icon-wrap">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Appointment Requested!</h3>
+          <p>We have successfully scheduled your consultation request. A representative will call you shortly to confirm the details.</p>
+          <div class="success-receipt" id="successReceipt">
+            <!-- Populated dynamically via JS -->
+          </div>
+          <button class="btn btn-primary" id="btnResetBooking" style="width: 100%; justify-content: center; margin-top: 15px;">
+            <i class="fas fa-redo"></i> Book Another Slot
+          </button>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</section>

@@ -7,6 +7,7 @@ import { handleSubmit } from './modules/contact-form.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
 import { initStoreLocator } from './modules/store-locator.js';
 import { initMagneticButtons } from './modules/magnetic-buttons.js';
+import { initAppointmentBooking } from './modules/appointment.js';
 
 async function loadIncludes() {
   const includes = document.querySelectorAll('[data-include]');
@@ -49,6 +50,9 @@ function initAll() {
   
   // Slider
   initTestimonialSlider();
+
+  // Appointment Booking
+  initAppointmentBooking();
 
   // Store Locator
   initStoreLocator();

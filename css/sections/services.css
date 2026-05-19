@@ -6,7 +6,7 @@
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 28px;
 }
 
@@ -18,6 +18,8 @@
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: var(--transition);
+  display: block;
+  text-decoration: none;
 }
 
 .service-card:hover {
@@ -84,4 +86,11 @@
 .service-card:hover .service-card-arrow {
   background: var(--primary);
   transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
