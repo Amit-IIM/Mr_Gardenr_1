@@ -24,13 +24,21 @@
       </div>
       
       <nav class="sidebar-menu">
-        <button class="menu-item active" data-tab="gallery">
-          <i class="fa-solid fa-images"></i>
-          <span>Gallery Portfolio</span>
+        <button class="menu-item active" data-tab="category" data-category="home-landscaping">
+          <i class="fa-solid fa-house-chimney-window"></i>
+          <span>Home Landscaping</span>
         </button>
-        <button class="menu-item" data-tab="testimonials">
-          <i class="fa-solid fa-comment-dots"></i>
-          <span>Client Reviews</span>
+        <button class="menu-item" data-tab="category" data-category="penthouse">
+          <i class="fa-solid fa-building-user"></i>
+          <span>Penthouse</span>
+        </button>
+        <button class="menu-item" data-tab="category" data-category="commercial-landscaping">
+          <i class="fa-solid fa-city"></i>
+          <span>Commercial</span>
+        </button>
+        <button class="menu-item" data-tab="category" data-category="office-landscaping">
+          <i class="fa-solid fa-briefcase"></i>
+          <span>Office Landscaping</span>
         </button>
         <button class="menu-item" data-tab="media">
           <i class="fa-solid fa-folder-open"></i>
@@ -102,114 +110,355 @@
       <!-- TAB CONTENTS -->
       <section class="admin-content-area">
         
-        <!-- 1. GALLERY TAB -->
-        <div id="tabGallery" class="tab-pane active">
-          <div class="panel-card">
-            <div class="panel-header">
-              <h2>Add New Portfolio Project</h2>
-              <p>Add a beautiful landscape design to your homepage gallery.</p>
-            </div>
-            
-            <form id="galleryForm" class="admin-form">
-              <input type="hidden" id="galleryId" value="">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="galleryTitle">Project Name / Title</label>
-                  <input type="text" id="galleryTitle" placeholder="e.g. Balcony Garden" required>
+        <!-- CATEGORY MANAGER TAB -->
+        <div id="tabCategory" class="tab-pane active">
+          
+          <!-- SUB-TABS NAVIGATION -->
+          <div class="sub-tabs-container">
+            <button class="sub-tab-btn active" data-subtab="projects">
+              <i class="fa-solid fa-images"></i>
+              <span>Projects Portfolio</span>
+            </button>
+            <button class="sub-tab-btn" data-subtab="testimonials">
+              <i class="fa-solid fa-comment-dots"></i>
+              <span>Client Reviews</span>
+            </button>
+            <button class="sub-tab-btn" data-subtab="editor">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <span>Page Sections Editor</span>
+            </button>
+          </div>
+
+          <!-- SUB-TAB 1: PROJECTS PORTFOLIO -->
+          <div id="subTabProjects" class="sub-tab-pane active">
+            <div class="category-manager-grid">
+              <!-- LEFT COLUMN: ADD PROJECT -->
+              <div class="category-manager-col">
+                <div class="panel-card">
+                  <div class="panel-header">
+                    <h2 id="projectFormTitle">Add Project</h2>
+                    <p id="projectFormDesc">Add a beautiful landscape project to this category.</p>
+                  </div>
+                  
+                  <form id="galleryForm" class="admin-form">
+                    <input type="hidden" id="galleryId" value="">
+                    <input type="hidden" id="galleryCategory" value="">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="galleryTitle">Project Name / Title</label>
+                        <input type="text" id="galleryTitle" placeholder="e.g. Balcony Garden" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="galleryLocation">Location / Client Name</label>
+                        <input type="text" id="galleryLocation" placeholder="e.g. DLF Camellias, Gurgaon" required>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label>Project Photo</label>
+                      <div class="upload-area" id="galleryUploadArea">
+                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                        <span class="upload-text">Drag & drop your project photo here, or <strong>browse</strong></span>
+                        <input type="file" id="galleryFileInput" class="hidden" accept="image/*">
+                        <img id="galleryPreview" class="upload-preview hidden" alt="Preview">
+                      </div>
+                      <input type="hidden" id="galleryImagePath" value="">
+                    </div>
+
+                    <div class="form-actions">
+                      <button type="button" id="clearGalleryFormBtn" class="btn btn-secondary hidden">Cancel Edit</button>
+                      <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-plus"></i> Save Project
+                      </button>
+                    </div>
+                  </form>
                 </div>
-                <div class="form-group">
-                  <label for="galleryLocation">Location / Client Name</label>
-                  <input type="text" id="galleryLocation" placeholder="e.g. DLF Camellias, Gurgaon" required>
-                </div>
-                <div class="form-group">
-                  <label for="galleryCategory">Project Category</label>
-                  <select id="galleryCategory" style="padding: 12px 16px; border: 1px solid var(--gray-light); border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; background: #fff; transition: var(--transition);" required>
-                    <option value="" disabled selected>Select Category...</option>
-                    <option value="home-landscaping">Home Landscaping</option>
-                    <option value="penthouse">Penthouse</option>
-                    <option value="commercial-landscaping">Commercial Landscaping</option>
-                    <option value="office-landscaping">Office Landscaping</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label>Project Photo</label>
-                <div class="upload-area" id="galleryUploadArea">
-                  <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
-                  <span class="upload-text">Drag & drop your project photo here, or <strong>browse</strong></span>
-                  <input type="file" id="galleryFileInput" class="hidden" accept="image/*">
-                  <img id="galleryPreview" class="upload-preview hidden" alt="Preview">
-                </div>
-                <input type="hidden" id="galleryImagePath" value="">
               </div>
 
-              <div class="form-actions">
-                <button type="button" id="clearGalleryFormBtn" class="btn btn-secondary hidden">Cancel Edit</button>
-                <button type="submit" class="btn btn-primary">
-                  <i class="fa-solid fa-plus"></i> Save Project
+              <!-- RIGHT COLUMN: PROJECTS LIST -->
+              <div class="category-manager-col">
+                <div class="panel-card">
+                  <div class="panel-header">
+                    <h2 id="projectListTitle">Category Projects Portfolio</h2>
+                    <p id="projectListDesc">Projects showcased under this category.</p>
+                  </div>
+                  
+                  <div class="portfolio-admin-grid" id="galleryListGrid">
+                    <!-- Dynamically populated -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 2: CLIENT REVIEWS -->
+          <div id="subTabTestimonials" class="sub-tab-pane hidden">
+            <div class="category-manager-grid">
+              <!-- LEFT COLUMN: ADD TESTIMONIAL -->
+              <div class="category-manager-col">
+                <div class="panel-card">
+                  <div class="panel-header">
+                    <h2 id="testimonialFormTitle">Add Client Testimonial</h2>
+                    <p id="testimonialFormDesc">Insert reviews from verified architects and clients.</p>
+                  </div>
+                  
+                  <form id="testimonialForm" class="admin-form">
+                    <input type="hidden" id="testimonialId" value="">
+                    <input type="hidden" id="testimonialCategory" value="">
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="testimonialAuthor">Author Name</label>
+                        <input type="text" id="testimonialAuthor" placeholder="e.g. Kavita Shah" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="testimonialRole">Role / Title / Company</label>
+                        <input type="text" id="testimonialRole" placeholder="e.g. Landscape Architect" required>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="testimonialQuote">Quote / Client Experience Description</label>
+                      <textarea id="testimonialQuote" rows="4" placeholder="Type customer review details here..." required></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                      <button type="button" id="clearTestimonialFormBtn" class="btn btn-secondary hidden">Cancel Edit</button>
+                      <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-plus"></i> Save Testimonial
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- RIGHT COLUMN: ACTIVE REVIEWS -->
+              <div class="category-manager-col">
+                <div class="panel-card">
+                  <div class="panel-header">
+                    <h2 id="testimonialListTitle">Active Client Reviews</h2>
+                    <p id="testimonialListDesc">Active slider reviews for this category.</p>
+                  </div>
+                  
+                  <div class="testimonials-admin-list" id="testimonialsListContainer">
+                    <!-- Dynamically populated -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-TAB 3: PAGE SECTIONS EDITOR -->
+          <div id="subTabPageEditor" class="sub-tab-pane hidden">
+            <form id="pageEditorForm" class="admin-form">
+              
+              <!-- ACCORDION 1: HERO SECTION -->
+              <div class="accordion-card">
+                <div class="accordion-header" id="headerHero">
+                  <div class="accordion-title-group">
+                    <i class="fa-solid fa-image text-primary"></i>
+                    <div>
+                      <h3>Hero Section</h3>
+                      <p>Modify hero headline, background image, and main CTA button.</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="pageHeroTag">Hero Tagline</label>
+                      <input type="text" id="pageHeroTag" placeholder="e.g. Premium Residential Landscaping" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="pageHeroCtaText">CTA Button Text</label>
+                      <input type="text" id="pageHeroCtaText" placeholder="e.g. Book a Home Consultation" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="pageHeroTitle">Hero Title / Main Headline</label>
+                    <input type="text" id="pageHeroTitle" placeholder="e.g. Breathe Life Into Your Private Sanctuary" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="pageHeroDesc">Hero Description / Sub-headline</label>
+                    <textarea id="pageHeroDesc" rows="3" placeholder="Type hero description text..." required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>Hero Background Image</label>
+                    <div class="upload-area" id="pageHeroBgUploadArea">
+                      <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                      <span class="upload-text">Drag & drop your Hero background image, or <strong>browse</strong></span>
+                      <input type="file" id="pageHeroBgFileInput" class="hidden" accept="image/*">
+                      <img id="pageHeroBgPreview" class="upload-preview hidden" alt="Hero background preview">
+                    </div>
+                    <input type="hidden" id="pageHeroBgImagePath" value="">
+                  </div>
+                </div>
+              </div>
+
+              <!-- ACCORDION 2: INTRO SECTION -->
+              <div class="accordion-card mt-16">
+                <div class="accordion-header" id="headerIntro">
+                  <div class="accordion-title-group">
+                    <i class="fa-solid fa-address-card text-primary"></i>
+                    <div>
+                      <h3>Introductory Copy & Media</h3>
+                      <p>Edit introductory headlines, paragraphs, and illustration.</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                  <div class="form-group">
+                    <label for="pageIntroTitle">Intro Title</label>
+                    <input type="text" id="pageIntroTitle" placeholder="e.g. Tailored Residential Green Spaces" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="pageIntroP1">First Paragraph</label>
+                    <textarea id="pageIntroP1" rows="3" placeholder="Type first paragraph..." required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="pageIntroP2">Second Paragraph</label>
+                    <textarea id="pageIntroP2" rows="3" placeholder="Type second paragraph..." required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="pageIntroP3">Third Paragraph</label>
+                    <textarea id="pageIntroP3" rows="3" placeholder="Type third paragraph..." required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>Intro Section Illustration / Image</label>
+                    <div class="upload-area" id="pageIntroUploadArea">
+                      <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                      <span class="upload-text">Drag & drop your Intro image here, or <strong>browse</strong></span>
+                      <input type="file" id="pageIntroFileInput" class="hidden" accept="image/*">
+                      <img id="pageIntroPreview" class="upload-preview hidden" alt="Intro illustration preview">
+                    </div>
+                    <input type="hidden" id="pageIntroImagePath" value="">
+                  </div>
+                </div>
+              </div>
+
+              <!-- ACCORDION 3: FEATURES SECTION -->
+              <div class="accordion-card mt-16">
+                <div class="accordion-header" id="headerFeatures">
+                  <div class="accordion-title-group">
+                    <i class="fa-solid fa-star text-primary"></i>
+                    <div>
+                      <h3>Features & Offerings</h3>
+                      <p>Customize the features headers and 3 individual feature offering cards.</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="pageFeaturesTag">Features Tagline</label>
+                      <input type="text" id="pageFeaturesTag" placeholder="e.g. Key Offerings" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="pageFeaturesTitle">Features Title</label>
+                      <input type="text" id="pageFeaturesTitle" placeholder="e.g. Solutions for Every Corner" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="pageFeaturesDesc">Features Section Description</label>
+                    <textarea id="pageFeaturesDesc" rows="2" placeholder="Type features section description..." required></textarea>
+                  </div>
+
+                  <div class="features-editor-grid mt-24">
+                    <!-- CARD 1 -->
+                    <div class="feature-edit-card">
+                      <h4>Feature Card 1</h4>
+                      <div class="form-group">
+                        <label for="pageFeature1Icon">FontAwesome Icon Class</label>
+                        <input type="text" id="pageFeature1Icon" placeholder="e.g. fa-solid fa-hotel" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="pageFeature1Title">Feature Title</label>
+                        <input type="text" id="pageFeature1Title" placeholder="e.g. Terrace Gardens" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="pageFeature1Desc">Feature Description</label>
+                        <textarea id="pageFeature1Desc" rows="3" placeholder="Type feature description..." required></textarea>
+                      </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="feature-edit-card">
+                      <h4>Feature Card 2</h4>
+                      <div class="form-group">
+                        <label for="pageFeature2Icon">FontAwesome Icon Class</label>
+                        <input type="text" id="pageFeature2Icon" placeholder="e.g. fa-solid fa-tree-city" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="pageFeature2Title">Feature Title</label>
+                        <input type="text" id="pageFeature2Title" placeholder="e.g. Balcony Greenery" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="pageFeature2Desc">Feature Description</label>
+                        <textarea id="pageFeature2Desc" rows="3" placeholder="Type feature description..." required></textarea>
+                      </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="feature-edit-card">
+                      <h4>Feature Card 3</h4>
+                      <div class="form-group">
+                        <label for="pageFeature3Icon">FontAwesome Icon Class</label>
+                        <input type="text" id="pageFeature3Icon" placeholder="e.g. fa-solid fa-seedling" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="pageFeature3Title">Feature Title</label>
+                        <input type="text" id="pageFeature3Title" placeholder="e.g. Backyard Lawns" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="pageFeature3Desc">Feature Description</label>
+                        <textarea id="pageFeature3Desc" rows="3" placeholder="Type feature description..." required></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ACCORDION 4: CALL-TO-ACTION (CTA) -->
+              <div class="accordion-card mt-16">
+                <div class="accordion-header" id="headerCta">
+                  <div class="accordion-title-group">
+                    <i class="fa-solid fa-bullhorn text-primary"></i>
+                    <div>
+                      <h3>Bottom CTA Banner</h3>
+                      <p>Configure the footer-level registration call-to-action details.</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-down accordion-arrow"></i>
+                </div>
+                <div class="accordion-content">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="pageCtaTitle">CTA Banner Title</label>
+                      <input type="text" id="pageCtaTitle" placeholder="e.g. Ready to Transform Your Home?" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="pageCtaButtonText">CTA Button Text</label>
+                      <input type="text" id="pageCtaButtonText" placeholder="e.g. Request Site Survey" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="pageCtaDesc">CTA Banner Description</label>
+                    <textarea id="pageCtaDesc" rows="3" placeholder="Type CTA description..." required></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SAVE BUTTON -->
+              <div class="editor-actions panel-card mt-24 text-right">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="fa-solid fa-floppy-disk"></i> Save Page Content
                 </button>
               </div>
             </form>
           </div>
 
-          <div class="panel-card mt-24">
-            <div class="panel-header">
-              <h2>Current Projects Portfolio</h2>
-              <p>Reorder, edit, or delete items currently showcased on the homepage.</p>
-            </div>
-            
-            <div class="portfolio-admin-grid" id="galleryListGrid">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. TESTIMONIALS TAB -->
-        <div id="tabTestimonials" class="tab-pane">
-          <div class="panel-card">
-            <div class="panel-header">
-              <h2>Add Client Testimonial</h2>
-              <p>Insert social proof reviews from verified architects and clients.</p>
-            </div>
-            
-            <form id="testimonialForm" class="admin-form">
-              <input type="hidden" id="testimonialId" value="">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="testimonialAuthor">Author Name</label>
-                  <input type="text" id="testimonialAuthor" placeholder="e.g. Kavita Shah" required>
-                </div>
-                <div class="form-group">
-                  <label for="testimonialRole">Role / Title / Company</label>
-                  <input type="text" id="testimonialRole" placeholder="e.g. Landscape Architect" required>
-                </div>
-              </div>
-              
-              <div class="form-group">
-                <label for="testimonialQuote">Quote / Client Experience Description</label>
-                <textarea id="testimonialQuote" rows="4" placeholder="Type customer review details here..." required></textarea>
-              </div>
-
-              <div class="form-actions">
-                <button type="button" id="clearTestimonialFormBtn" class="btn btn-secondary hidden">Cancel Edit</button>
-                <button type="submit" class="btn btn-primary">
-                  <i class="fa-solid fa-plus"></i> Save Testimonial
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <div class="panel-card mt-24">
-            <div class="panel-header">
-              <h2>Active Client Reviews</h2>
-              <p>Edit or remove active slider reviews.</p>
-            </div>
-            
-            <div class="testimonials-admin-list" id="testimonialsListContainer">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
         </div>
 
         <!-- 3. MEDIA BRAND ASSETS TAB -->

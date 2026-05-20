@@ -1,1 +1,203 @@
-{"testimonials":[{"id":"t1","author":"Mr lucky valecha","role":"Founder of Proteinverse","quote":"MrGardenr completely turned my imagination into reality. From the moment I reached out to them, their team was attentive and professional, helping me select the perfect plants and planters to transform my Penthouse into a beautiful, Green oasis."},{"id":"t2","author":"Kavita Shah","role":"Architect","quote":"I am absolutely thrilled with my purchases from Mr Gardenr! The elegant pots and planters have transformed my home, and their exotic plants are stunning. The quality and variety are unmatched. Highly recommended!"},{"id":"t3","author":"Ms Hetal Shah","role":"Landscape Architect","quote":"I’ve been a gardening enthusiast for years, and Mr Gardenr has become my go-to place for elegant pots and rare plants. The quality and craftsmanship are exceptional. Mr Gardenr Just transformed My office, Now its more positive and Live."},{"id":"t4","author":"Mr Tirth","role":"Business Owner","quote":"The exotic plants from Mr Gardenr have added a unique touch to my clients Home & garden. The pots and planters are not only elegant but also durable. I’m impressed with the variety and the helpful staff."},{"id":"t1779271905463","author":"Eshu Sharma ","role":"NC traders","quote":"I love the wayy change my barren and dry terrace to green and warn beautiful terrace. MrGardenr is the only company that help me to become the plant parents.\n"}],"gallery":[{"id":"g1","title":"Balcony Garden","location":"DLF Camellias, Gurgaon","image":"images/pexels-mh92-19631983.jpg","category":"home-landscaping"},{"id":"g2","title":"Gazebo Installation","location":"Prestige Golfshire, Bangalore","image":"images/pergola.png","category":"penthouse"},{"id":"g3","title":"Backyard Development","location":"Embassy Grove, Bangalore","image":"images/park.png","category":"home-landscaping"},{"id":"g4","title":"Commercial Landscaping","location":"Toyota Industries, Bangalore","image":"images/office.png","category":"commercial-landscaping"},{"id":"g5","title":"Terrace Garden","location":"Indira Nagar, Bangalore","image":"images/maintenance.png","category":"home-landscaping"},{"id":"g6","title":"Complete Landscape","location":"Whitefield, Bangalore","image":"images/hero.png","category":"commercial-landscaping"},{"id":"g1779272617293","title":"Terrace garden","location":"Nagar panchayat ","image":"images/pexels-madhav-khanna-106387-32103584.jpg","category":"home-landscaping"},{"id":"g1779273253053","title":"Raja Ka Tal","location":"Agra","category":"home-landscaping","image":"images/pexels-tobiandchris-37639780.jpg"}]}
+{
+  "testimonials": [
+    {
+      "id": "t1",
+      "author": "Mr lucky valecha",
+      "role": "Founder of Proteinverse",
+      "quote": "MrGardenr completely turned my imagination into reality. From the moment I reached out to them, their team was attentive and professional, helping me select the perfect plants and planters to transform my Penthouse into a beautiful, Green oasis."
+    },
+    {
+      "id": "t2",
+      "author": "Kavita Shah",
+      "role": "Architect",
+      "quote": "I am absolutely thrilled with my purchases from Mr Gardenr! The elegant pots and planters have transformed my home, and their exotic plants are stunning. The quality and variety are unmatched. Highly recommended!"
+    },
+    {
+      "id": "t3",
+      "author": "Ms Hetal Shah",
+      "role": "Landscape Architect",
+      "quote": "I’ve been a gardening enthusiast for years, and Mr Gardenr has become my go-to place for elegant pots and rare plants. The quality and craftsmanship are exceptional. Mr Gardenr Just transformed My office, Now its more positive and Live."
+    },
+    {
+      "id": "t4",
+      "author": "Mr Tirth",
+      "role": "Business Owner",
+      "quote": "The exotic plants from Mr Gardenr have added a unique touch to my clients Home & garden. The pots and planters are not only elegant but also durable. I’m impressed with the variety and the helpful staff."
+    },
+    {
+      "id": "t1779271905463",
+      "author": "Eshu Sharma ",
+      "role": "NC traders",
+      "quote": "I love the wayy change my barren and dry terrace to green and warm beautiful terrace. MrGardenr is the only company that help me to become the plant parents.\n",
+      "category": "home-landscaping"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "g1",
+      "title": "Balcony Garden",
+      "location": "DLF Camellias, Gurgaon",
+      "image": "images/pexels-mh92-19631983.jpg",
+      "category": "home-landscaping"
+    },
+    {
+      "id": "g2",
+      "title": "Gazebo Installation",
+      "location": "Prestige Golfshire, Bangalore",
+      "image": "images/pergola.png",
+      "category": "penthouse"
+    },
+    {
+      "id": "g3",
+      "title": "Backyard Development",
+      "location": "Embassy Grove, Bangalore",
+      "image": "images/park.png",
+      "category": "home-landscaping"
+    },
+    {
+      "id": "g4",
+      "title": "Commercial Landscaping",
+      "location": "Toyota Industries, Bangalore",
+      "image": "images/office.png",
+      "category": "commercial-landscaping"
+    },
+    {
+      "id": "g5",
+      "title": "Terrace Garden",
+      "location": "Indira Nagar, Bangalore",
+      "image": "images/maintenance.png",
+      "category": "home-landscaping"
+    },
+    {
+      "id": "g6",
+      "title": "Complete Landscape",
+      "location": "Whitefield, Bangalore",
+      "image": "images/hero.png",
+      "category": "commercial-landscaping"
+    },
+    {
+      "id": "g1779272617293",
+      "title": "Terrace garden",
+      "location": "Nagar panchayat ",
+      "image": "images/pexels-madhav-khanna-106387-32103584.jpg",
+      "category": "home-landscaping"
+    },
+    {
+      "id": "g1779273253053",
+      "title": "Raja Ka Tal",
+      "location": "Agra",
+      "category": "home-landscaping",
+      "image": "images/pexels-tobiandchris-37639780.jpg"
+    }
+  ],
+  "pages": {
+    "home-landscaping": {
+      "heroTag": "Premium Residential Landscaping",
+      "heroTitle": "Breathe Life Into Your Private Sanctuary",
+      "heroDesc": "Whether it’s a modern terrace garden, an elegant balcony setup, or a sprawling backyard lawn, we craft bespoke residential landscapes that perfectly blend style with serene nature.",
+      "heroBgImage": "images/home-landscaping.png",
+      "heroCtaText": "Book a Home Consultation",
+      "introTitle": "Tailored Residential Green Spaces",
+      "introP1": "At MrGardenr, we believe your home should be an oasis of calm. Our residential landscaping services are designed to transform every corner of your outdoor area into a functional, beautiful living space.",
+      "introP2": "From vertical gardens that save space to luxurious terrace lawns and elegant balcony plant setups, we handle everything from design conceptualization to flawless implementation.",
+      "introP3": "We work with high-quality, weather-resistant materials, handpicked premium plants, and state-of-the-art irrigation systems to ensure your home garden looks fresh all year round.",
+      "introImage": "images/hero.png",
+      "featuresTag": "Key Offerings",
+      "featuresTitle": "Solutions for Every Corner",
+      "featuresDesc": "Explore our specialized domestic landscaping solutions tailored to different areas of your residence.",
+      "feature1Icon": "fa-solid fa-hotel",
+      "feature1Title": "Terrace Gardens",
+      "feature1Desc": "Turn underutilized rooftops into vibrant green escapes featuring premium artificial grass, seating zones, and weather-proof planters.",
+      "feature2Icon": "fa-solid fa-tree-city",
+      "feature2Title": "Balcony Greenery",
+      "feature2Desc": "Space-optimized vertical gardens, designer hanging pots, and biophilic structures that make the most of your apartment views.",
+      "feature3Icon": "fa-solid fa-seedling",
+      "feature3Title": "Backyard Lawns",
+      "feature3Desc": "Flawless real or synthetic turf installation, bordering trees, gravel walkways, and bespoke landscape designs.",
+      "ctaTitle": "Ready to Transform Your Home?",
+      "ctaDesc": "Let our landscape architects design the perfect green retreat in your home. Get started with an expert site survey today.",
+      "ctaButtonText": "Request Site Survey"
+    },
+    "penthouse": {
+      "heroTag": "Luxury Penthouse & structures",
+      "heroTitle": "Exquisite Skyline Living & Luxury Pergolas",
+      "heroDesc": "Elevate your penthouse terrace with premium weather-resistant glass or wooden pergolas, custom-crafted gazebos, premium composite wood decking, and ambient mood lighting.",
+      "heroBgImage": "images/pergola.png",
+      "heroCtaText": "Book a Luxury Consultation",
+      "introTitle": "Redefining Skyline Luxury",
+      "introP1": "Living on top of the world deserves an outdoor space that matches the scale of your ambition. At MrGardenr, we specialize in high-end penthouse landscaping that turns rooftop terraces into breathtaking, private sky-lounges.",
+      "introP2": "From engineered wooden and metallic pergolas designed to withstand high-altitude winds, to bespoke luxury gazebos, low-maintenance composite decking, and calming water features, we bring true craftsmanship to the skies.",
+      "introP3": "Each design is structurally evaluated by our engineering teams to ensure safety, durability, and a stunning architectural silhouette that adds immense aesthetic value to your penthouse.",
+      "introImage": "images/hero.png",
+      "featuresTag": "Premium Elements",
+      "featuresTitle": "Architectural Excellence",
+      "featuresDesc": "Bespoke structural additions that seamlessly extend your interior luxury into the outdoors.",
+      "feature1Icon": "fa-solid fa-person-shelter",
+      "feature1Title": "Designer Pergolas",
+      "feature1Desc": "Tailored bioclimatic, glass, or wooden pergolas providing the perfect balance of shade, wind protection, and sheer architectural beauty.",
+      "feature2Icon": "fa-solid fa-grip-lines",
+      "feature2Title": "Premium Decking",
+      "feature2Desc": "Ultra-durable, weather-resistant composite wood decking that delivers a warm, luxurious feel without the maintenance issues of real timber.",
+      "feature3Icon": "fa-solid fa-lightbulb",
+      "feature3Title": "Mood Lighting",
+      "feature3Desc": "Custom-engineered outdoor illumination with strip LEDs, spotlight accents, and smart controls that bring your sky lounge to life at night.",
+      "ctaTitle": "Ready to Elevate Your Skyline Experience?",
+      "ctaDesc": "Collaborate with our elite design team to conceptualize your custom sky villa landscape today.",
+      "ctaButtonText": "Consult Our Architects"
+    },
+    "commercial-landscaping": {
+      "heroTag": "Commercial Landscaping",
+      "heroTitle": "Large-Scale Sustainable Greenery & Park Development",
+      "heroDesc": "From public park development and luxury residential townships to corporate campuses, we design and execute top-tier, master-planned commercial landscapes.",
+      "heroBgImage": "images/park.png",
+      "heroCtaText": "Request Commercial Proposal",
+      "introTitle": "Master-Planned Commercial Greenery",
+      "introP1": "Large, public, or corporate spaces require sophisticated, sustainable designs that can endure high visitor traffic while offering unmatched environmental and cooling benefits. At MrGardenr, we provide end-to-end commercial site development.",
+      "introP2": "We work directly with developers, municipal authorities, industrial designers, and corporate boards to engineer massive botanical parks, industrial green zones, smart-city park projects, and luxury resort gardens.",
+      "introP3": "Our projects feature automated drip-irrigation networks, heavy-duty commercial turf, structural soil engineering, native microforest clusters, and architectural water-fountains designed for minimal water waste.",
+      "introImage": "images/hero.png",
+      "featuresTag": "Our Scope",
+      "featuresTitle": "Large-Scale Solutions",
+      "featuresDesc": "Providing high-traffic, durable, and highly ecological green infrastructure for commercial spaces.",
+      "feature1Icon": "fa-solid fa-tree",
+      "feature1Title": "Public & Smart Parks",
+      "feature1Desc": "Complete park development including pathways, active play zones, native forestry blocks, ecological ponds, and weather-proof public seating.",
+      "feature2Icon": "fa-solid fa-building",
+      "feature2Title": "Corporate Campuses",
+      "feature2Desc": "Create inspiring campus ecosystems with green entry statement archways, biophilic open-air meeting pods, manicured lawns, and large ornamental fountains.",
+      "feature3Icon": "fa-solid fa-map-location-dot",
+      "feature3Title": "Township Masterplanning",
+      "feature3Desc": "Massive-scale landscape architecture for gated communities, premium resort complexes, and educational institutions with integrated eco-trails.",
+      "ctaTitle": "Partner With Large-Scale Landscaping Experts",
+      "ctaDesc": "Whether you need a master plan, public park development proposal, or corporate campus beautification, our team is equipped to execute seamlessly.",
+      "ctaButtonText": "Contact Corporate Desk"
+    },
+    "office-landscaping": {
+      "heroTag": "Biophilic Office Design",
+      "heroTitle": "Inspiring Biophilic Workspaces for Modern Offices",
+      "heroDesc": "Boost employee productivity, optimize indoor air quality, and lower stress with custom-designed indoor gardens, self-watering green walls, and custom planters.",
+      "heroBgImage": "images/office.png",
+      "heroCtaText": "Book an Office Consultation",
+      "introTitle": "The Power of Biophilic Workspaces",
+      "introP1": "Modern workspaces are moving beyond concrete walls. At MrGardenr, we bring biophilic design inside the office. Incorporating active living plants, customized green partition layouts, and moss walls has been scientifically proven to boost employee cognitive productivity by up to 15%.",
+      "introP2": "We design, engineer, install, and completely maintain indoor landscape setups for large IT tech parks, startup hubs, premium co-working lounges, and grand corporate lobbies.",
+      "introP3": "Our solutions focus on low-light indoor flora, allergen-free natural moss panels, smart indoor spot-lighting, and mess-free sub-irrigation planters that require zero manual daily watering.",
+      "introImage": "images/hero.png",
+      "featuresTag": "Key Focus Areas",
+      "featuresTitle": "Indoor Biophilic Elements",
+      "featuresDesc": "Healthy, vibrant, and highly aesthetic indoor flora installations configured for corporate environments.",
+      "feature1Icon": "fa-solid fa-leaf",
+      "feature1Title": "Vertical Green Walls",
+      "feature1Desc": "Turn blank corridor walls into gorgeous, active green panels containing air-purifying foliage and self-contained drip systems.",
+      "feature2Icon": "fa-solid fa-chair",
+      "feature2Title": "Desk & Lounge Greens",
+      "feature2Desc": "Elegant table planters, biophilic division bookshelves, moss art frames, and tall floor plants that naturally section off collaboration zones.",
+      "feature3Icon": "fa-solid fa-door-open",
+      "feature3Title": "Biophilic Lobbies",
+      "feature3Desc": "Make a lasting premium impression with indoor landscape statement items in receptions, incorporating stone beds and soothing micro-fountains.",
+      "ctaTitle": "Boost Corporate Well-Being Today",
+      "ctaDesc": "Schedule a walkthrough with our workplace biophilia experts. We provide custom indoor planting layouts tailored to your office layout.",
+      "ctaButtonText": "Request Office Walkthrough"
+    }
+  }
+}

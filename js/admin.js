@@ -5,6 +5,7 @@ let contentData = {
   testimonials: [],
   gallery: []
 };
+let currentCategory = 'home-landscaping';
 
 // DOM Elements
 const tabButtons = document.querySelectorAll('.menu-item');
@@ -13,10 +14,14 @@ const headerTitle = document.querySelector('.header-title h1');
 
 document.addEventListener('DOMContentLoaded', () => {
   initTabs();
+  initSubTabs();
+  initAccordions();
   fetchContent();
   initGalleryUpload();
   initGalleryForm();
   initTestimonialForm();
+  initPageEditorUploaders();
+  initPageEditorForm();
   initMediaUploader();
   initDeploySystem();
 });
@@ -34,10 +39,14 @@ function initTabs() {
       // Update active tab pane
       tabPanes.forEach(pane => pane.classList.remove('active'));
       
-      let paneId = 'tabGallery';
-      if (tabId === 'testimonials') paneId = 'tabTestimonials';
+      let paneId = 'tabCategory';
       if (tabId === 'media') paneId = 'tabMedia';
       if (tabId === 'deploy') paneId = 'tabDeploy';
+      
+      if (tabId === 'category') {
+        currentCategory = btn.getAttribute('data-category');
+        renderCategoryContent();
+      }
       
       const activePane = document.getElementById(paneId);
       if (activePane) activePane.classList.add('active');
@@ -56,8 +65,7 @@ async function fetchContent() {
     contentData = await response.json();
     
     updateStats();
-    renderGalleryList();
-    renderTestimonialsList();
+    renderCategoryContent();
   } catch (err) {
     showToast('Error loading CMS content: ' + err.message, 'error');
   }
@@ -66,6 +74,33 @@ async function fetchContent() {
 function updateStats() {
   document.getElementById('statGalleryCount').textContent = contentData.gallery.length;
   document.getElementById('statTestimonialCount').textContent = contentData.testimonials.length;
+}
+
+// RENDER UNIFIED CATEGORY CONTENT
+function renderCategoryContent() {
+  const categoryTitle = currentCategory.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  
+  // Update UI headings
+  document.getElementById('projectFormTitle').textContent = `Add ${categoryTitle} Project`;
+  document.getElementById('projectFormDesc').textContent = `Add a beautiful landscape project to the ${categoryTitle} showcase.`;
+  document.getElementById('projectListTitle').textContent = `Category Projects: ${categoryTitle}`;
+  
+  document.getElementById('testimonialFormTitle').textContent = `Add ${categoryTitle} Review`;
+  document.getElementById('testimonialFormDesc').textContent = `Insert client reviews specifically for ${categoryTitle}.`;
+  document.getElementById('testimonialListTitle').textContent = `Active Reviews: ${categoryTitle}`;
+  
+  // Sync hidden form inputs
+  document.getElementById('galleryCategory').value = currentCategory;
+  document.getElementById('testimonialCategory').value = currentCategory;
+  
+  // Cancel active edits to prevent cross-category state leaks
+  document.getElementById('clearGalleryFormBtn').click();
+  document.getElementById('clearTestimonialFormBtn').click();
+  
+  // Render lists & editor
+  renderGalleryList();
+  renderTestimonialsList();
+  populatePageEditor();
 }
 
 // TOAST NOTIFICATIONS
@@ -174,6 +209,7 @@ function initGalleryForm() {
     form.reset();
     idInput.value = '';
     imagePathInput.value = '';
+    categoryInput.value = currentCategory;
     preview.classList.add('hidden');
     clearBtn.classList.add('hidden');
     form.querySelector('button[type="submit"]').innerHTML = '<i class="fa-solid fa-plus"></i> Save Project';
@@ -185,7 +221,7 @@ function initGalleryForm() {
     const id = idInput.value;
     const title = titleInput.value;
     const location = locationInput.value;
-    const category = categoryInput.value;
+    const category = categoryInput.value || currentCategory;
     const image = imagePathInput.value;
     
     if (!image) {
@@ -223,8 +259,7 @@ async function saveContent() {
     if (!response.ok) throw new Error('Failed to save content state to database.');
     
     updateStats();
-    renderGalleryList();
-    renderTestimonialsList();
+    renderCategoryContent();
   } catch (err) {
     showToast('Error saving data: ' + err.message, 'error');
   }
@@ -235,7 +270,19 @@ function renderGalleryList() {
   if (!container) return;
   container.innerHTML = '';
   
-  contentData.gallery.forEach(item => {
+  const filtered = contentData.gallery.filter(item => item.category === currentCategory);
+  
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="empty-list-placeholder">
+        <i class="fa-solid fa-folder-open"></i>
+        <p>No projects in this category yet. Add one above!</p>
+      </div>
+    `;
+    return;
+  }
+  
+  filtered.forEach(item => {
     const card = document.createElement('div');
     card.className = 'portfolio-admin-card';
     card.innerHTML = `
@@ -245,7 +292,6 @@ function renderGalleryList() {
       <div class="portfolio-admin-details">
         <h4>${item.title}</h4>
         <p>${item.location}</p>
-        <span class="category-badge">${item.category ? item.category.replace('-', ' ') : 'General'}</span>
       </div>
       <div class="portfolio-admin-actions">
         <button class="btn-edit" data-id="${item.id}"><i class="fa-solid fa-pencil"></i> Edit</button>
@@ -265,7 +311,7 @@ function editGalleryItem(item) {
   document.getElementById('galleryId').value = item.id;
   document.getElementById('galleryTitle').value = item.title;
   document.getElementById('galleryLocation').value = item.location;
-  document.getElementById('galleryCategory').value = item.category || '';
+  document.getElementById('galleryCategory').value = item.category || currentCategory;
   document.getElementById('galleryImagePath').value = item.image;
   
   const preview = document.getElementById('galleryPreview');
@@ -290,6 +336,7 @@ async function deleteGalleryItem(id) {
 function initTestimonialForm() {
   const form = document.getElementById('testimonialForm');
   const idInput = document.getElementById('testimonialId');
+  const categoryInput = document.getElementById('testimonialCategory');
   const authorInput = document.getElementById('testimonialAuthor');
   const roleInput = document.getElementById('testimonialRole');
   const quoteInput = document.getElementById('testimonialQuote');
@@ -300,6 +347,7 @@ function initTestimonialForm() {
   clearBtn.addEventListener('click', () => {
     form.reset();
     idInput.value = '';
+    categoryInput.value = currentCategory;
     clearBtn.classList.add('hidden');
     form.querySelector('button[type="submit"]').innerHTML = '<i class="fa-solid fa-plus"></i> Save Testimonial';
   });
@@ -311,18 +359,19 @@ function initTestimonialForm() {
     const author = authorInput.value;
     const role = roleInput.value;
     const quote = quoteInput.value;
+    const category = categoryInput.value || currentCategory;
     
     if (id) {
       // Edit
       const index = contentData.testimonials.findIndex(item => item.id === id);
       if (index !== -1) {
-        contentData.testimonials[index] = { id, author, role, quote };
+        contentData.testimonials[index] = { id, author, role, quote, category };
         showToast('Testimonial updated.');
       }
     } else {
       // Add
       const newId = 't' + Date.now();
-      contentData.testimonials.push({ id: newId, author, role, quote });
+      contentData.testimonials.push({ id: newId, author, role, quote, category });
       showToast('Testimonial added.');
     }
     
@@ -336,7 +385,19 @@ function renderTestimonialsList() {
   if (!container) return;
   container.innerHTML = '';
   
-  contentData.testimonials.forEach(t => {
+  const filtered = contentData.testimonials.filter(t => t.category === currentCategory);
+  
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="empty-list-placeholder">
+        <i class="fa-solid fa-comment-slash"></i>
+        <p>No testimonials in this category yet. Add one above!</p>
+      </div>
+    `;
+    return;
+  }
+  
+  filtered.forEach(t => {
     const card = document.createElement('div');
     card.className = 'testimonial-admin-card';
     card.innerHTML = `
@@ -363,6 +424,7 @@ function renderTestimonialsList() {
 function editTestimonialItem(t) {
   const form = document.getElementById('testimonialForm');
   document.getElementById('testimonialId').value = t.id;
+  document.getElementById('testimonialCategory').value = t.category || currentCategory;
   document.getElementById('testimonialAuthor').value = t.author;
   document.getElementById('testimonialRole').value = t.role;
   document.getElementById('testimonialQuote').value = t.quote;
@@ -394,7 +456,7 @@ function initMediaUploader() {
       showToast(`Uploading brand replacement: ${targetFilename}...`, 'warning');
       
       try {
-        const response = await fetch(`/api/upload?filename=${encodeURIComponent(targetFilename)}`, {
+        const response = await fetch(`/api/upload?filename=${encodeURIComponent(file.name)}`, {
           method: 'POST',
           body: file
         });
@@ -485,4 +547,240 @@ function initDeploySystem() {
       }
     }, 1800);
   }
+}
+
+// SUB-TABS MANAGEMENT
+let currentSubTab = 'projects';
+
+function initSubTabs() {
+  const subTabButtons = document.querySelectorAll('.sub-tab-btn');
+  const subTabPanes = document.querySelectorAll('.sub-tab-pane');
+  
+  subTabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const subtab = btn.getAttribute('data-subtab');
+      currentSubTab = subtab;
+      
+      // Update button selection states
+      subTabButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Hide all panes
+      subTabPanes.forEach(pane => {
+        pane.classList.remove('active');
+        pane.classList.add('hidden');
+      });
+      
+      // Show matching subtab pane
+      let targetPaneId = 'subTabProjects';
+      if (subtab === 'testimonials') targetPaneId = 'subTabTestimonials';
+      if (subtab === 'editor') targetPaneId = 'subTabPageEditor';
+      
+      const targetPane = document.getElementById(targetPaneId);
+      if (targetPane) {
+        targetPane.classList.add('active');
+        targetPane.classList.remove('hidden');
+      }
+    });
+  });
+}
+
+// ACCORDION LAYOUT CONTROLLER
+function initAccordions() {
+  const cards = document.querySelectorAll('.accordion-card');
+  cards.forEach((card, index) => {
+    const header = card.querySelector('.accordion-header');
+    header.addEventListener('click', () => {
+      const isActive = card.classList.contains('active');
+      
+      // Toggle current accordion
+      if (isActive) {
+        card.classList.remove('active');
+      } else {
+        // Close others
+        cards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      }
+    });
+    
+    // Expand the Hero accordion by default
+    if (index === 0) {
+      card.classList.add('active');
+    }
+  });
+}
+
+// POPULATE PAGE SECTIONS FIELDS FROM DATABASE
+function populatePageEditor() {
+  if (!contentData.pages || !contentData.pages[currentCategory]) {
+    return;
+  }
+  
+  const page = contentData.pages[currentCategory];
+  
+  // Hero
+  document.getElementById('pageHeroTag').value = page.heroTag || '';
+  document.getElementById('pageHeroTitle').value = page.heroTitle || '';
+  document.getElementById('pageHeroDesc').value = page.heroDesc || '';
+  document.getElementById('pageHeroCtaText').value = page.heroCtaText || '';
+  document.getElementById('pageHeroBgImagePath').value = page.heroBgImage || '';
+  
+  const heroPreview = document.getElementById('pageHeroBgPreview');
+  if (page.heroBgImage) {
+    heroPreview.src = page.heroBgImage;
+    heroPreview.classList.remove('hidden');
+  } else {
+    heroPreview.classList.add('hidden');
+  }
+  
+  // Intro
+  document.getElementById('pageIntroTitle').value = page.introTitle || '';
+  document.getElementById('pageIntroP1').value = page.introP1 || '';
+  document.getElementById('pageIntroP2').value = page.introP2 || '';
+  document.getElementById('pageIntroP3').value = page.introP3 || '';
+  document.getElementById('pageIntroImagePath').value = page.introImage || '';
+  
+  const introPreview = document.getElementById('pageIntroPreview');
+  if (page.introImage) {
+    introPreview.src = page.introImage;
+    introPreview.classList.remove('hidden');
+  } else {
+    introPreview.classList.add('hidden');
+  }
+  
+  // Features Header
+  document.getElementById('pageFeaturesTag').value = page.featuresTag || '';
+  document.getElementById('pageFeaturesTitle').value = page.featuresTitle || '';
+  document.getElementById('pageFeaturesDesc').value = page.featuresDesc || '';
+  
+  // Features Cards
+  document.getElementById('pageFeature1Icon').value = page.feature1Icon || '';
+  document.getElementById('pageFeature1Title').value = page.feature1Title || '';
+  document.getElementById('pageFeature1Desc').value = page.feature1Desc || '';
+  
+  document.getElementById('pageFeature2Icon').value = page.feature2Icon || '';
+  document.getElementById('pageFeature2Title').value = page.feature2Title || '';
+  document.getElementById('pageFeature2Desc').value = page.feature2Desc || '';
+  
+  document.getElementById('pageFeature3Icon').value = page.feature3Icon || '';
+  document.getElementById('pageFeature3Title').value = page.feature3Title || '';
+  document.getElementById('pageFeature3Desc').value = page.feature3Desc || '';
+  
+  // CTA Banner
+  document.getElementById('pageCtaTitle').value = page.ctaTitle || '';
+  document.getElementById('pageCtaDesc').value = page.ctaDesc || '';
+  document.getElementById('pageCtaButtonText').value = page.ctaButtonText || '';
+}
+
+// UPLOADER LOGIC FOR PAGE GRAPHICS
+function initPageEditorUploaders() {
+  setupUploader('pageHeroBgUploadArea', 'pageHeroBgFileInput', 'pageHeroBgPreview', 'pageHeroBgImagePath');
+  setupUploader('pageIntroUploadArea', 'pageIntroFileInput', 'pageIntroPreview', 'pageIntroImagePath');
+  
+  function setupUploader(areaId, inputId, previewId, pathId) {
+    const uploadArea = document.getElementById(areaId);
+    const fileInput = document.getElementById(inputId);
+    const preview = document.getElementById(previewId);
+    const imagePathInput = document.getElementById(pathId);
+    
+    if (!uploadArea) return;
+    
+    uploadArea.addEventListener('click', () => fileInput.click());
+    
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.style.borderColor = 'var(--primary)';
+    });
+    
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.style.borderColor = 'var(--gray-light)';
+    });
+    
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.style.borderColor = 'var(--gray-light)';
+      if (e.dataTransfer.files.length > 0) {
+        handleUpload(e.dataTransfer.files[0]);
+      }
+    });
+    
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        handleUpload(fileInput.files[0]);
+      }
+    });
+    
+    async function handleUpload(file) {
+      if (!file.type.startsWith('image/')) {
+        showToast('Please upload an image file.', 'error');
+        return;
+      }
+      
+      showToast('Uploading image...', 'warning');
+      
+      try {
+        const response = await fetch(`/api/upload?filename=${encodeURIComponent(file.name)}`, {
+          method: 'POST',
+          body: file
+        });
+        
+        const result = await response.json();
+        if (result.success) {
+          imagePathInput.value = result.url;
+          preview.src = result.url;
+          preview.classList.remove('hidden');
+          showToast('Image uploaded successfully!');
+        } else {
+          throw new Error(result.error || 'Upload failed');
+        }
+      } catch (err) {
+        showToast('Upload error: ' + err.message, 'error');
+      }
+    }
+  }
+}
+
+// SAVE DYNAMIC SECTION CONTENTS
+function initPageEditorForm() {
+  const form = document.getElementById('pageEditorForm');
+  if (!form) return;
+  
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    if (!contentData.pages) {
+      contentData.pages = {};
+    }
+    
+    contentData.pages[currentCategory] = {
+      heroTag: document.getElementById('pageHeroTag').value,
+      heroTitle: document.getElementById('pageHeroTitle').value,
+      heroDesc: document.getElementById('pageHeroDesc').value,
+      heroCtaText: document.getElementById('pageHeroCtaText').value,
+      heroBgImage: document.getElementById('pageHeroBgImagePath').value,
+      introTitle: document.getElementById('pageIntroTitle').value,
+      introP1: document.getElementById('pageIntroP1').value,
+      introP2: document.getElementById('pageIntroP2').value,
+      introP3: document.getElementById('pageIntroP3').value,
+      introImage: document.getElementById('pageIntroImagePath').value,
+      featuresTag: document.getElementById('pageFeaturesTag').value,
+      featuresTitle: document.getElementById('pageFeaturesTitle').value,
+      featuresDesc: document.getElementById('pageFeaturesDesc').value,
+      feature1Icon: document.getElementById('pageFeature1Icon').value,
+      feature1Title: document.getElementById('pageFeature1Title').value,
+      feature1Desc: document.getElementById('pageFeature1Desc').value,
+      feature2Icon: document.getElementById('pageFeature2Icon').value,
+      feature2Title: document.getElementById('pageFeature2Title').value,
+      feature2Desc: document.getElementById('pageFeature2Desc').value,
+      feature3Icon: document.getElementById('pageFeature3Icon').value,
+      feature3Title: document.getElementById('pageFeature3Title').value,
+      feature3Desc: document.getElementById('pageFeature3Desc').value,
+      ctaTitle: document.getElementById('pageCtaTitle').value,
+      ctaDesc: document.getElementById('pageCtaDesc').value,
+      ctaButtonText: document.getElementById('pageCtaButtonText').value
+    };
+    
+    showToast('Saving page content update...', 'warning');
+    await saveContent();
+  });
 }

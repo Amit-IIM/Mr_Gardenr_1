@@ -9,6 +9,7 @@ import { initSmoothScroll } from './modules/smooth-scroll.js';
 import { initStoreLocator } from './modules/store-locator.js';
 import { initMagneticButtons } from './modules/magnetic-buttons.js';
 import { initAppointmentBooking } from './modules/appointment.js';
+import { renderCategoryPage } from './modules/page-renderer.js';
 
 async function loadIncludes() {
   const includes = document.querySelectorAll('[data-include]');
@@ -38,22 +39,37 @@ async function loadDynamicContent() {
     const res = await fetch('data/content.json');
     if (res.ok) {
       const data = await res.json();
+      
+      // Auto-detect page category
+      let pageCategory = '';
+      const path = window.location.pathname.toLowerCase();
+      if (path.includes('home-landscaping')) pageCategory = 'home-landscaping';
+      else if (path.includes('penthouse')) pageCategory = 'penthouse';
+      else if (path.includes('commercial-landscaping')) pageCategory = 'commercial-landscaping';
+      else if (path.includes('office-landscaping')) pageCategory = 'office-landscaping';
+
+      // Dynamic category page rendering
+      if (pageCategory && data.pages && data.pages[pageCategory]) {
+        renderCategoryPage(data.pages[pageCategory]);
+      }
+
+      // Testimonial filtering and rendering
       if (data.testimonials && data.testimonials.length > 0) {
-        renderTestimonials(data.testimonials);
+        let filteredTestimonials = data.testimonials;
+        if (pageCategory) {
+          const categorySpecific = data.testimonials.filter(t => t.category === pageCategory);
+          if (categorySpecific.length > 0) {
+            filteredTestimonials = categorySpecific;
+          }
+        }
+        renderTestimonials(filteredTestimonials);
       } else {
         initTestimonialSlider();
       }
+
+      // Gallery and page showcase rendering
       if (data.gallery && data.gallery.length > 0) {
         renderGallery(data.gallery);
-        
-        // Auto-detect page category for landing page showcases
-        let pageCategory = '';
-        const path = window.location.pathname.toLowerCase();
-        if (path.includes('home-landscaping')) pageCategory = 'home-landscaping';
-        else if (path.includes('penthouse')) pageCategory = 'penthouse';
-        else if (path.includes('commercial-landscaping')) pageCategory = 'commercial-landscaping';
-        else if (path.includes('office-landscaping')) pageCategory = 'office-landscaping';
-        
         if (pageCategory) {
           renderPageShowcase(data.gallery, pageCategory);
         }
