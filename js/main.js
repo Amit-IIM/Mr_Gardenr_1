@@ -77,11 +77,50 @@ async function loadDynamicContent() {
     } else {
       console.warn("Dynamic database content.json not found, utilizing HTML static fallback");
       initTestimonialSlider();
+      showCmsOfflineNotification();
     }
   } catch (err) {
     console.error("Error loading dynamic content:", err);
     initTestimonialSlider();
+    showCmsOfflineNotification();
   }
+}
+
+function showCmsOfflineNotification() {
+  if (document.getElementById('cmsOfflineBanner')) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'cmsOfflineBanner';
+  banner.className = 'offline-banner';
+  
+  banner.innerHTML = `
+    <div class="offline-icon-container">
+      <i class="fa-solid fa-wifi-slash"></i>
+    </div>
+    <div class="offline-content">
+      <div class="offline-title">Offline Mode Enabled</div>
+      <div class="offline-text">
+        The live CMS database is currently unreachable. The site remains fully functional using local static backups.
+      </div>
+    </div>
+    <button class="offline-close-btn" aria-label="Dismiss notification">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  `;
+
+  document.body.appendChild(banner);
+
+  setTimeout(() => {
+    banner.classList.add('show');
+  }, 100);
+
+  const closeBtn = banner.querySelector('.offline-close-btn');
+  closeBtn.addEventListener('click', () => {
+    banner.classList.remove('show');
+    setTimeout(() => {
+      banner.remove();
+    }, 600);
+  });
 }
 
 
