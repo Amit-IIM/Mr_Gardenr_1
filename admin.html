@@ -4,8 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MrGardenr CMS | Administrator Panel</title>
+  
+  <!-- Fast Session Guard Lock -->
+  <script>
+    (async function() {
+      try {
+        const res = await fetch('/api/session-check');
+        if (!res.ok) {
+          window.location.replace('/login.html');
+        }
+      } catch (e) {
+        window.location.replace('/login.html');
+      }
+    })();
+  </script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/buttons.css">
   <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
@@ -51,9 +67,12 @@
       </nav>
 
       <div class="sidebar-footer">
-        <a href="index.html" class="btn btn-secondary btn-sm btn-block">
+        <a href="index.html" class="btn btn-secondary btn-sm btn-block" style="margin-bottom: 8px;">
           <i class="fa-solid fa-arrow-left"></i> Back to Site
         </a>
+        <button id="logoutBtn" class="btn btn-danger btn-sm btn-block">
+          <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+        </button>
       </div>
     </aside>
 

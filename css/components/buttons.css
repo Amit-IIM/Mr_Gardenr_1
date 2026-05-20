@@ -75,3 +75,30 @@
 .btn-dark:hover {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
+
+.btn-secondary {
+  background: var(--gray-light);
+  color: var(--dark);
+}
+
+.btn-secondary::before {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:hover {
+  color: var(--dark);
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: var(--white);
+}
+
+.btn-danger::before {
+  background: #dc2626;
+}
+
+.btn-danger:hover {
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
+}

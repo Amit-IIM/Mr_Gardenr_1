@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MrGardenr CMS | Secure Portal Sign-In</title>
+  <!-- SEO Elements -->
+  <meta name="description" content="Secure administrative login for MrGardenr Portfolio Content Management System. Authorized personnel only.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  <!-- BACKGROUND DECORATIONS -->
+  <div class="glow-bg-orb orb-top-left"></div>
+  <div class="glow-bg-orb orb-bottom-right"></div>
+
+  <!-- MAIN WRAPPER -->
+  <div class="login-wrapper">
+    
+    <!-- LOGIN GLASS CARD -->
+    <div class="login-card">
+      
+      <!-- BRAND CONTAINER -->
+      <div class="brand-container animate-fade-in-down">
+        <div class="brand-icon">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <h1>MrGardenr <strong>CMS</strong></h1>
+        <p class="subtitle">Secure Administrator Workspace</p>
+      </div>
+
+      <!-- ALERTS & MESSAGES CONTAINER -->
+      <div id="errorAlert" class="alert-box hidden">
+        <i class="fa-solid fa-circle-exclamation alert-icon"></i>
+        <span id="errorMessage" class="alert-text">Invalid credentials.</span>
+      </div>
+
+      <!-- FORM -->
+      <form id="loginForm" autocomplete="off" class="animate-fade-in-up">
+        
+        <!-- USERNAME FIELD -->
+        <div class="form-group">
+          <label for="username">
+            <i class="fa-solid fa-user input-label-icon"></i> Username
+          </label>
+          <div class="input-container">
+            <input type="text" id="username" placeholder="Enter administrative username" required autocomplete="username">
+            <span class="focus-border"></span>
+          </div>
+        </div>
+
+        <!-- PASSWORD FIELD -->
+        <div class="form-group">
+          <label for="password">
+            <i class="fa-solid fa-lock input-label-icon"></i> Password
+          </label>
+          <div class="input-container">
+            <input type="password" id="password" placeholder="••••••••••••" required autocomplete="current-password">
+            <button type="button" id="togglePasswordBtn" class="toggle-password" aria-label="Toggle password visibility">
+              <i class="fa-regular fa-eye" id="toggleEyeIcon"></i>
+            </button>
+            <span class="focus-border"></span>
+          </div>
+        </div>
+
+        <!-- BUTTONS & ACTIONS -->
+        <div class="form-actions">
+          <button type="submit" id="submitBtn" class="btn btn-primary btn-block">
+            <span class="btn-text">Authenticate Portal</span>
+            <i class="fa-solid fa-circle-notch fa-spin btn-spinner hidden"></i>
+          </button>
+        </div>
+
+      </form>
+
+      <!-- CARD FOOTER -->
+      <div class="card-footer animate-fade-in">
+        <a href="index.html" class="back-link">
+          <i class="fa-solid fa-arrow-left"></i> Return to Portfolio
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,5 +1,21 @@
 // MrGardenr Admin CMS Control Module
 
+// Global Session Fetch Interceptor (handles session timeouts/401 Unauthorized)
+const originalFetch = window.fetch;
+window.fetch = async function(...args) {
+  try {
+    const response = await originalFetch(...args);
+    if (response.status === 401) {
+      // Force redirect to login page immediately
+      window.location.replace('/login.html');
+      return new Promise(() => {}); // Halts any downstream then() blocks
+    }
+    return response;
+  } catch (err) {
+    throw err;
+  }
+};
+
 // Global State
 let contentData = {
   testimonials: [],
@@ -24,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageEditorForm();
   initMediaUploader();
   initDeploySystem();
+  initLogout();
 });
 
 // TABS CONTROLLER
@@ -783,4 +800,22 @@ function initPageEditorForm() {
     showToast('Saving page content update...', 'warning');
     await saveContent();
   });
+}
+
+function initLogout() {
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+      try {
+        const response = await fetch('/api/logout', { method: 'POST' });
+        if (response.ok) {
+          window.location.replace('/login.html');
+        } else {
+          window.location.replace('/login.html');
+        }
+      } catch (err) {
+        window.location.replace('/login.html');
+      }
+    });
+  }
 }
