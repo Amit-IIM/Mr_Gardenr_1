@@ -201,7 +201,7 @@ body {
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
 
@@ -342,6 +342,19 @@ body {
 .portfolio-admin-details p {
   font-size: 13px;
   color: var(--gray);
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(91, 165, 133, 0.1);
+  color: var(--primary-dark);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: fit-content;
+  margin-top: 4px;
 }
 
 .portfolio-admin-actions {

@@ -163,6 +163,7 @@ function initGalleryForm() {
   const idInput = document.getElementById('galleryId');
   const titleInput = document.getElementById('galleryTitle');
   const locationInput = document.getElementById('galleryLocation');
+  const categoryInput = document.getElementById('galleryCategory');
   const imagePathInput = document.getElementById('galleryImagePath');
   const preview = document.getElementById('galleryPreview');
   const clearBtn = document.getElementById('clearGalleryFormBtn');
@@ -184,6 +185,7 @@ function initGalleryForm() {
     const id = idInput.value;
     const title = titleInput.value;
     const location = locationInput.value;
+    const category = categoryInput.value;
     const image = imagePathInput.value;
     
     if (!image) {
@@ -195,13 +197,13 @@ function initGalleryForm() {
       // Edit mode
       const index = contentData.gallery.findIndex(item => item.id === id);
       if (index !== -1) {
-        contentData.gallery[index] = { id, title, location, image };
+        contentData.gallery[index] = { id, title, location, category, image };
         showToast('Project updated successfully.');
       }
     } else {
       // Add mode
       const newId = 'g' + Date.now();
-      contentData.gallery.push({ id: newId, title, location, image });
+      contentData.gallery.push({ id: newId, title, location, category, image });
       showToast('Project added successfully.');
     }
     
@@ -243,6 +245,7 @@ function renderGalleryList() {
       <div class="portfolio-admin-details">
         <h4>${item.title}</h4>
         <p>${item.location}</p>
+        <span class="category-badge">${item.category ? item.category.replace('-', ' ') : 'General'}</span>
       </div>
       <div class="portfolio-admin-actions">
         <button class="btn-edit" data-id="${item.id}"><i class="fa-solid fa-pencil"></i> Edit</button>
@@ -262,6 +265,7 @@ function editGalleryItem(item) {
   document.getElementById('galleryId').value = item.id;
   document.getElementById('galleryTitle').value = item.title;
   document.getElementById('galleryLocation').value = item.location;
+  document.getElementById('galleryCategory').value = item.category || '';
   document.getElementById('galleryImagePath').value = item.image;
   
   const preview = document.getElementById('galleryPreview');

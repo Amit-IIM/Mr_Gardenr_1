@@ -2,7 +2,7 @@ import { toggleMobileNav } from './modules/mobile-nav.js';
 import { revealOnScroll } from './modules/scroll-reveal.js';
 import { animateCounters } from './modules/counter-animation.js';
 import { initTestimonialSlider, renderTestimonials } from './modules/testimonial-slider.js';
-import { renderGallery } from './modules/gallery.js';
+import { renderGallery, renderPageShowcase } from './modules/gallery.js';
 import { handleNavScroll } from './modules/navbar-scroll.js';
 import { handleSubmit } from './modules/contact-form.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
@@ -45,6 +45,18 @@ async function loadDynamicContent() {
       }
       if (data.gallery && data.gallery.length > 0) {
         renderGallery(data.gallery);
+        
+        // Auto-detect page category for landing page showcases
+        let pageCategory = '';
+        const path = window.location.pathname.toLowerCase();
+        if (path.includes('home-landscaping')) pageCategory = 'home-landscaping';
+        else if (path.includes('penthouse')) pageCategory = 'penthouse';
+        else if (path.includes('commercial-landscaping')) pageCategory = 'commercial-landscaping';
+        else if (path.includes('office-landscaping')) pageCategory = 'office-landscaping';
+        
+        if (pageCategory) {
+          renderPageShowcase(data.gallery, pageCategory);
+        }
       }
     } else {
       console.warn("Dynamic database content.json not found, utilizing HTML static fallback");
@@ -55,6 +67,7 @@ async function loadDynamicContent() {
     initTestimonialSlider();
   }
 }
+
 
 function initAll() {
   // Navigation
