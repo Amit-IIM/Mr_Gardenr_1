@@ -25,6 +25,7 @@ $port = if ($env:PORT) { $env:PORT } else { "8080" }
 $appRoot = if ($env:APP_ROOT) { $env:APP_ROOT } else { $PSScriptRoot }
 $dbPath = if ($env:DB_PATH) { $env:DB_PATH } else { Join-Path $appRoot "data\content.json" }
 $imgPath = if ($env:IMAGE_DIR) { $env:IMAGE_DIR } else { Join-Path $appRoot "images" }
+$allowedOrigin = if ($env:ALLOWED_ORIGIN) { $env:ALLOWED_ORIGIN } else { "http://localhost:8080" }
 
 # --- Authentication and Security Globals & Helpers ---
 $global:Sessions = @{}       # SessionId -> DateTime (LastActive)
@@ -82,9 +83,10 @@ while ($listener.IsListening) {
 
     # Intercept API calls
     if ($path.StartsWith("/api/")) {
-        $ctx.Response.AddHeader("Access-Control-Allow-Origin", "*")
+        $ctx.Response.AddHeader("Access-Control-Allow-Origin", $allowedOrigin)
         $ctx.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         $ctx.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type")
+        $ctx.Response.AddHeader("Access-Control-Allow-Credentials", "true")
 
         if ($ctx.Request.HttpMethod -eq "OPTIONS") {
             $ctx.Response.StatusCode = 200
