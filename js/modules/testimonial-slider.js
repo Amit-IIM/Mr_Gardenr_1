@@ -1,8 +1,36 @@
 let currentSlide = 0;
-const totalSlides = 4;
+let totalSlides = 4;
 let autoSlideInterval;
 
-export function initTestimonialSlider() {
+export function renderTestimonials(testimonials) {
+  const track = document.getElementById('testimonialTrack');
+  if (!track) return;
+  track.innerHTML = '';
+  
+  testimonials.forEach(t => {
+    const card = document.createElement('div');
+    card.className = 'testimonial-card';
+    card.innerHTML = `
+      <div class="testimonial-inner">
+        <div class="testimonial-quote">&ldquo;</div>
+        <blockquote>${t.quote}</blockquote>
+        <div class="testimonial-author">
+          <strong>${t.author}</strong>
+          <span>${t.role}</span>
+        </div>
+      </div>
+    `;
+    track.appendChild(card);
+  });
+  
+  initTestimonialSlider(testimonials.length);
+}
+
+export function initTestimonialSlider(count) {
+  if (count !== undefined) {
+    totalSlides = count;
+  }
+
   const nav = document.getElementById('testimonialNav');
   if (!nav) return;
 
@@ -32,10 +60,15 @@ export function goToSlide(index) {
 }
 
 function nextSlide() {
-  goToSlide((currentSlide + 1) % totalSlides);
+  if (totalSlides > 0) {
+    goToSlide((currentSlide + 1) % totalSlides);
+  }
 }
 
 function startAutoSlide() {
   clearInterval(autoSlideInterval);
-  autoSlideInterval = setInterval(nextSlide, 5000);
+  if (totalSlides > 0) {
+    autoSlideInterval = setInterval(nextSlide, 5000);
+  }
 }
+

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MrGardenr CMS | Administrator Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- ADMIN TOASTS -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- ADMIN LAYOUT -->
+  <div class="admin-wrapper">
+    
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <i class="fa-solid fa-leaf text-primary"></i>
+        <span>MrGardenr <strong>CMS</strong></span>
+      </div>
+      
+      <nav class="sidebar-menu">
+        <button class="menu-item active" data-tab="gallery">
+          <i class="fa-solid fa-images"></i>
+          <span>Gallery Portfolio</span>
+        </button>
+        <button class="menu-item" data-tab="testimonials">
+          <i class="fa-solid fa-comment-dots"></i>
+          <span>Client Reviews</span>
+        </button>
+        <button class="menu-item" data-tab="media">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>Brand Assets</span>
+        </button>
+        <button class="menu-item" data-tab="deploy">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Deploy & Sync</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" class="btn btn-secondary btn-sm btn-block">
+          <i class="fa-solid fa-arrow-left"></i> Back to Site
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+      
+      <!-- TOP HEADER -->
+      <header class="admin-header">
+        <div class="header-title">
+          <h1>Dashboard Overview</h1>
+          <p>Manage images, customer testimonials, and sync code easily.</p>
+        </div>
+        <div class="header-actions">
+          <button id="quickGitBtn" class="btn btn-primary">
+            <i class="fa-solid fa-circle-notch fa-spin btn-spinner hidden"></i>
+            <i class="fa-solid fa-cloud-arrow-up btn-icon"></i> Publish to GitHub
+          </button>
+        </div>
+      </header>
+
+      <!-- STATS GRID -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon bg-emerald-light">
+            <i class="fa-solid fa-images text-emerald"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Total Projects</span>
+            <strong id="statGalleryCount" class="stat-value">0</strong>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon bg-blue-light">
+            <i class="fa-solid fa-comment-dots text-blue"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Total Reviews</span>
+            <strong id="statTestimonialCount" class="stat-value">0</strong>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon bg-gold-light">
+            <i class="fa-solid fa-circle-check text-gold"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Local Server</span>
+            <strong class="stat-value text-success">Active</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB CONTENTS -->
+      <section class="admin-content-area">
+        
+        <!-- 1. GALLERY TAB -->
+        <div id="tabGallery" class="tab-pane active">
+          <div class="panel-card">
+            <div class="panel-header">
+              <h2>Add New Portfolio Project</h2>
+              <p>Add a beautiful landscape design to your homepage gallery.</p>
+            </div>
+            
+            <form id="galleryForm" class="admin-form">
+              <input type="hidden" id="galleryId" value="">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="galleryTitle">Project Name / Title</label>
+                  <input type="text" id="galleryTitle" placeholder="e.g. Balcony Garden" required>
+                </div>
+                <div class="form-group">
+                  <label for="galleryLocation">Location / Client Name</label>
+                  <input type="text" id="galleryLocation" placeholder="e.g. DLF Camellias, Gurgaon" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label>Project Photo</label>
+                <div class="upload-area" id="galleryUploadArea">
+                  <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                  <span class="upload-text">Drag & drop your project photo here, or <strong>browse</strong></span>
+                  <input type="file" id="galleryFileInput" class="hidden" accept="image/*">
+                  <img id="galleryPreview" class="upload-preview hidden" alt="Preview">
+                </div>
+                <input type="hidden" id="galleryImagePath" value="">
+              </div>
+
+              <div class="form-actions">
+                <button type="button" id="clearGalleryFormBtn" class="btn btn-secondary hidden">Cancel Edit</button>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-plus"></i> Save Project
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel-card mt-24">
+            <div class="panel-header">
+              <h2>Current Projects Portfolio</h2>
+              <p>Reorder, edit, or delete items currently showcased on the homepage.</p>
+            </div>
+            
+            <div class="portfolio-admin-grid" id="galleryListGrid">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. TESTIMONIALS TAB -->
+        <div id="tabTestimonials" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <h2>Add Client Testimonial</h2>
+              <p>Insert social proof reviews from verified architects and clients.</p>
+            </div>
+            
+            <form id="testimonialForm" class="admin-form">
+              <input type="hidden" id="testimonialId" value="">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="testimonialAuthor">Author Name</label>
+                  <input type="text" id="testimonialAuthor" placeholder="e.g. Kavita Shah" required>
+                </div>
+                <div class="form-group">
+                  <label for="testimonialRole">Role / Title / Company</label>
+                  <input type="text" id="testimonialRole" placeholder="e.g. Landscape Architect" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="testimonialQuote">Quote / Client Experience Description</label>
+                <textarea id="testimonialQuote" rows="4" placeholder="Type customer review details here..." required></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" id="clearTestimonialFormBtn" class="btn btn-secondary hidden">Cancel Edit</button>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-plus"></i> Save Testimonial
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel-card mt-24">
+            <div class="panel-header">
+              <h2>Active Client Reviews</h2>
+              <p>Edit or remove active slider reviews.</p>
+            </div>
+            
+            <div class="testimonials-admin-list" id="testimonialsListContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. MEDIA BRAND ASSETS TAB -->
+        <div id="tabMedia" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header">
+              <h2>Replace Core Site Media</h2>
+              <p>Replace main template assets by uploading files directly.</p>
+            </div>
+
+            <div class="media-replacement-grid">
+              <!-- HERO BG -->
+              <div class="media-card">
+                <div class="media-card-title">Homepage Hero Background</div>
+                <p class="media-card-desc">Format: PNG, Recommended resolution: 1920x1080px</p>
+                <div class="media-preview-container">
+                  <img src="images/hero.png" alt="Hero background preview">
+                </div>
+                <div class="media-actions">
+                  <label class="btn btn-secondary btn-sm btn-block">
+                    <i class="fa-solid fa-upload"></i> Replace Image
+                    <input type="file" class="hidden core-media-uploader" data-target="hero.png" accept="image/*">
+                  </label>
+                </div>
+              </div>
+
+              <!-- LOGO -->
+              <div class="media-card">
+                <div class="media-card-title">Brand Logo Image</div>
+                <p class="media-card-desc">Format: PNG, Transparent background recommended</p>
+                <div class="media-preview-container bg-dark-check">
+                  <img src="images/logo.png" alt="Logo preview">
+                </div>
+                <div class="media-actions">
+                  <label class="btn btn-secondary btn-sm btn-block">
+                    <i class="fa-solid fa-upload"></i> Replace Image
+                    <input type="file" class="hidden core-media-uploader" data-target="logo.png" accept="image/*">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. DEPLOY AND SYNC TAB -->
+        <div id="tabDeploy" class="tab-pane">
+          <div class="panel-card text-center py-48">
+            <div class="deploy-banner">
+              <i class="fa-solid fa-cloud-arrow-up deploy-glowing-icon"></i>
+              <h2>Publish Site Changes to GitHub</h2>
+              <p class="max-w-500">Deploy your updated database records, images, and brand replacements instantly to the live production server on GitHub Pages.</p>
+            </div>
+            
+            <div class="deploy-actions mt-32">
+              <button id="fullDeployBtn" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-circle-notch fa-spin btn-spinner hidden"></i>
+                <i class="fa-solid fa-cloud-arrow-up btn-icon"></i> Deploy to Production (GitHub)
+              </button>
+            </div>
+
+            <div id="deployConsole" class="console-box mt-32 hidden">
+              <div class="console-header">
+                <span><i class="fa-solid fa-terminal"></i> Terminal Output</span>
+                <span class="console-dot-group">
+                  <span class="console-dot"></span>
+                  <span class="console-dot"></span>
+                  <span class="console-dot"></span>
+                </span>
+              </div>
+              <pre id="consoleOutput" class="console-body">Starting deployment sync pipeline...</pre>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="js/admin.js" type="module"></script>
+</body>
+</html>

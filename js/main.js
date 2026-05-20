@@ -1,7 +1,8 @@
 import { toggleMobileNav } from './modules/mobile-nav.js';
 import { revealOnScroll } from './modules/scroll-reveal.js';
 import { animateCounters } from './modules/counter-animation.js';
-import { initTestimonialSlider } from './modules/testimonial-slider.js';
+import { initTestimonialSlider, renderTestimonials } from './modules/testimonial-slider.js';
+import { renderGallery } from './modules/gallery.js';
 import { handleNavScroll } from './modules/navbar-scroll.js';
 import { handleSubmit } from './modules/contact-form.js';
 import { initSmoothScroll } from './modules/smooth-scroll.js';
@@ -32,6 +33,29 @@ async function loadIncludes() {
   initAll();
 }
 
+async function loadDynamicContent() {
+  try {
+    const res = await fetch('data/content.json');
+    if (res.ok) {
+      const data = await res.json();
+      if (data.testimonials && data.testimonials.length > 0) {
+        renderTestimonials(data.testimonials);
+      } else {
+        initTestimonialSlider();
+      }
+      if (data.gallery && data.gallery.length > 0) {
+        renderGallery(data.gallery);
+      }
+    } else {
+      console.warn("Dynamic database content.json not found, utilizing HTML static fallback");
+      initTestimonialSlider();
+    }
+  } catch (err) {
+    console.error("Error loading dynamic content:", err);
+    initTestimonialSlider();
+  }
+}
+
 function initAll() {
   // Navigation
   window.addEventListener('scroll', handleNavScroll);
@@ -48,8 +72,8 @@ function initAll() {
   window.addEventListener('scroll', animateCounters);
   animateCounters(); // run once on load
   
-  // Slider
-  initTestimonialSlider();
+  // Dynamic Content (Slider & Gallery)
+  loadDynamicContent();
 
   // Appointment Booking
   initAppointmentBooking();
@@ -63,3 +87,4 @@ function initAll() {
 
 // Start loading on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', loadIncludes);
+

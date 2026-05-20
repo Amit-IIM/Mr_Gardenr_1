@@ -1,0 +1,66 @@
+{
+  "testimonials": [
+    {
+      "id": "t1",
+      "author": "Mr lucky valecha",
+      "role": "Founder of Proteinverse",
+      "quote": "MrGardenr completely turned my imagination into reality. From the moment I reached out to them, their team was attentive and professional, helping me select the perfect plants and planters to transform my Penthouse into a beautiful, Green oasis."
+    },
+    {
+      "id": "t2",
+      "author": "Kavita Shah",
+      "role": "Architect",
+      "quote": "I am absolutely thrilled with my purchases from Mr Gardenr! The elegant pots and planters have transformed my home, and their exotic plants are stunning. The quality and variety are unmatched. Highly recommended!"
+    },
+    {
+      "id": "t3",
+      "author": "Ms Hetal Shah",
+      "role": "Landscape Architect",
+      "quote": "I’ve been a gardening enthusiast for years, and Mr Gardenr has become my go-to place for elegant pots and rare plants. The quality and craftsmanship are exceptional. Mr Gardenr Just transformed My office, Now its more positive and Live."
+    },
+    {
+      "id": "t4",
+      "author": "Mr Tirth",
+      "role": "Business Owner",
+      "quote": "The exotic plants from Mr Gardenr have added a unique touch to my clients Home & garden. The pots and planters are not only elegant but also durable. I’m impressed with the variety and the helpful staff."
+    }
+  ],
+  "gallery": [
+    {
+      "id": "g1",
+      "title": "Balcony Garden",
+      "location": "DLF Camellias, Gurgaon",
+      "image": "images/home-landscaping.png"
+    },
+    {
+      "id": "g2",
+      "title": "Gazebo Installation",
+      "location": "Prestige Golfshire, Bangalore",
+      "image": "images/pergola.png"
+    },
+    {
+      "id": "g3",
+      "title": "Backyard Development",
+      "location": "Embassy Grove, Bangalore",
+      "image": "images/park.png"
+    },
+    {
+      "id": "g4",
+      "title": "Commercial Landscaping",
+      "location": "Toyota Industries, Bangalore",
+      "image": "images/office.png"
+    },
+    {
+      "id": "g5",
+      "title": "Terrace Garden",
+      "location": "Indira Nagar, Bangalore",
+      "image": "images/maintenance.png"
+    },
+    {
+      "id": "g6",
+      "title": "Complete Landscape",
+      "location": "Whitefield, Bangalore",
+      "image": "images/hero.png"
+    }
+  ]
+}
