@@ -1,7 +1,35 @@
+# Load environment variables from .env file
+$envFilePath = Join-Path $PSScriptRoot ".env"
+if (Test-Path $envFilePath) {
+    Get-Content $envFilePath | Foreach-Object {
+        $line = $_.Trim()
+        if ($line -and -not $line.StartsWith("#")) {
+            $parts = $line.Split("=", 2)
+            if ($parts.Length -eq 2) {
+                $key = $parts[0].Trim()
+                $value = $parts[1].Trim()
+                # Remove surrounding quotes if any
+                if ($value.StartsWith('"') -and $value.EndsWith('"')) {
+                    $value = $value.Substring(1, $value.Length - 2)
+                } elseif ($value.StartsWith("'") -and $value.EndsWith("'")) {
+                    $value = $value.Substring(1, $value.Length - 2)
+                }
+                [System.Environment]::SetEnvironmentVariable($key, $value)
+            }
+        }
+    }
+}
+
+# Resolve variables from environment or use smart defaults
+$port = if ($env:PORT) { $env:PORT } else { "8080" }
+$appRoot = if ($env:APP_ROOT) { $env:APP_ROOT } else { $PSScriptRoot }
+$dbPath = if ($env:DB_PATH) { $env:DB_PATH } else { Join-Path $appRoot "data\content.json" }
+$imgPath = if ($env:IMAGE_DIR) { $env:IMAGE_DIR } else { Join-Path $appRoot "images" }
+
 $listener = New-Object System.Net.HttpListener
-$listener.Prefixes.Add("http://localhost:8080/")
+$listener.Prefixes.Add("http://localhost:$port/")
 $listener.Start()
-Write-Host "Server running at http://localhost:8080/"
+Write-Host "Server running at http://localhost:$port/"
 
 while ($listener.IsListening) {
     $ctx = $listener.GetContext()
@@ -20,7 +48,6 @@ while ($listener.IsListening) {
         }
 
         if ($path -eq "/api/content" -and $ctx.Request.HttpMethod -eq "GET") {
-            $dbPath = "c:\Users\ADMIN\Antigravity\data\content.json"
             if (Test-Path $dbPath) {
                 $bytes = [System.IO.File]::ReadAllBytes($dbPath)
                 $ctx.Response.ContentType = "application/json"
@@ -32,7 +59,6 @@ while ($listener.IsListening) {
             }
         }
         elseif ($path -eq "/api/content" -and $ctx.Request.HttpMethod -eq "POST") {
-            $dbPath = "c:\Users\ADMIN\Antigravity\data\content.json"
             $dbDir = [System.IO.Path]::GetDirectoryName($dbPath)
             if (-not (Test-Path $dbDir)) {
                 New-Item -ItemType Directory -Force -Path $dbDir | Out-Null
@@ -48,7 +74,6 @@ while ($listener.IsListening) {
         elseif ($path -eq "/api/upload" -and $ctx.Request.HttpMethod -eq "POST") {
             $filename = $ctx.Request.QueryString["filename"]
             if ($filename) {
-                $imgPath = "c:\Users\ADMIN\Antigravity\images"
                 if (-not (Test-Path $imgPath)) {
                     New-Item -ItemType Directory -Force -Path $imgPath | Out-Null
                 }
@@ -93,7 +118,7 @@ while ($listener.IsListening) {
     }
 
     if ($path -eq "/") { $path = "/index.html" }
-    $file = Join-Path "c:\Users\ADMIN\Antigravity" ($path -replace "/","\")
+    $file = Join-Path $appRoot ($path -replace "/","\")
     
     if (Test-Path $file) {
         $bytes = [System.IO.File]::ReadAllBytes($file)
