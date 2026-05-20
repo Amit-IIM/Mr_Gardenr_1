@@ -148,7 +148,7 @@ while ($listener.IsListening) {
                 $password = $loginData.password
 
                 $expectedUsername = if ($env:ADMIN_USERNAME) { $env:ADMIN_USERNAME } else { "admin" }
-                $expectedHash = if ($env:ADMIN_PASSWORD_HASH) { $env:ADMIN_PASSWORD_HASH } else { "9261a86851b2f7035a78622c10b427d14217fa3561c28c8959f635678a594895" }
+                $expectedHash = if ($env:ADMIN_PASSWORD_HASH) { $env:ADMIN_PASSWORD_HASH } else { "426848eb68bf6aa07212a4070863dbe30d92456cf011e238252ddfd86a247856" }
 
                 $inputHash = Get-Sha256Hash $password
 
