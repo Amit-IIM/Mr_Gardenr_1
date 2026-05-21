@@ -30,10 +30,15 @@ function verifySession(req, res) {
   if (cookieHeader) {
     const cookies = cookieHeader.split(';');
     for (const cookie of cookies) {
-      const parts = cookie.trim().split('=');
-      if (parts.length === 2 && parts[0] === 'SessionId') {
-        token = parts[1];
-        break;
+      const trimmed = cookie.trim();
+      const eqIndex = trimmed.indexOf('=');
+      if (eqIndex !== -1) {
+        const name = trimmed.substring(0, eqIndex);
+        const value = trimmed.substring(eqIndex + 1);
+        if (name === 'SessionId') {
+          token = value;
+          break;
+        }
       }
     }
   }
